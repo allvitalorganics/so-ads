@@ -3,967 +3,346 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sensitive Ones — 110 Ads & Social Posts with Visual Mockups</title>
+<title>Sensitive Ones — 110 Ads & Social Posts</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--mg:#B8255A;--bk:#0D0D0D;--wh:#FFFFFF;--cream:#FAF8F6;--pink:#FFF0F3}
 body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#080808;color:#fff;padding:0}
-.header{background:#0a0a0a;border-bottom:1px solid #222;padding:20px 32px;position:sticky;top:0;z-index:100}
-.header h1{font-size:18px;font-weight:800;color:var(--mg)}
-.header p{font-size:10px;color:#555;margin-top:2px}
-.cats{display:flex;gap:3px;flex-wrap:wrap;margin-top:10px}
-.cat-btn{padding:5px 10px;border-radius:100px;font-size:8px;font-weight:700;cursor:pointer;border:1px solid #333;color:#555;transition:.12s;letter-spacing:.2px;text-transform:uppercase}
-.cat-btn:hover{border-color:var(--mg);color:#fff}
-.cat-btn.on{background:var(--mg);color:#fff;border-color:var(--mg)}
-.grid{max-width:1200px;margin:24px auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.header{background:#0a0a0a;border-bottom:1px solid #222;padding:16px 24px;position:sticky;top:0;z-index:100}
+.header h1{font-size:16px;font-weight:800;color:var(--mg)}
+.header p{font-size:9px;color:#555;margin-top:2px}
+.filters{display:flex;gap:3px;flex-wrap:wrap;margin-top:8px}
+.fbtn{padding:4px 9px;border-radius:100px;font-size:7px;font-weight:700;cursor:pointer;border:1px solid #333;color:#555;transition:.12s;letter-spacing:.2px;text-transform:uppercase}
+.fbtn:hover{border-color:var(--mg);color:#fff}
+.fbtn.on{background:var(--mg);color:#fff;border-color:var(--mg)}
+.grid{max-width:1400px;margin:16px auto;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1100px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
 
-/* AD CARD */
-.ad-card{background:#111;border:1px solid #1a1a1a;border-radius:12px;overflow:hidden;display:none}
-.ad-card.show{display:block}
-.ad-card .num-badge{position:absolute;top:8px;left:8px;background:var(--mg);color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:4px;z-index:2}
-.ad-card .format-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);color:#999;font-size:8px;font-weight:600;padding:3px 8px;border-radius:4px;z-index:2;letter-spacing:.5px;text-transform:uppercase}
+.ad{background:#111;border:1px solid #1a1a1a;border-radius:10px;overflow:hidden;display:none}
+.ad.show{display:block}
 
-/* MOCKUP FRAME */
-.mockup{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden}
-.mockup-1x1{aspect-ratio:1/1}
-.mockup-9x16{aspect-ratio:9/16;max-height:480px}
+/* MOCKUP */
+.mk{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px 20px}
+.mk .n{position:absolute;top:6px;left:6px;background:var(--mg);color:#fff;font-size:8px;font-weight:800;padding:2px 6px;border-radius:3px;z-index:2}
+.mk .fmt{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);color:#888;font-size:7px;font-weight:600;padding:2px 6px;border-radius:3px;z-index:2;letter-spacing:.3px;text-transform:uppercase}
 
-/* MOCKUP STYLES — the visual graphics */
-.m-white{background:var(--wh);color:var(--bk)}
-.m-cream{background:var(--cream);color:var(--bk)}
-.m-mg{background:var(--mg);color:var(--wh)}
-.m-dark{background:var(--bk);color:var(--wh)}
-.m-pink{background:linear-gradient(180deg,var(--pink) 0%,#fff 100%);color:var(--bk)}
-.m-gradient{background:linear-gradient(135deg,var(--pink) 0%,var(--cream) 50%,#fff 100%);color:var(--bk)}
+/* Usage tags */
+.use{position:absolute;bottom:6px;left:6px;font-size:7px;font-weight:700;padding:2px 6px;border-radius:3px;z-index:2;letter-spacing:.3px;text-transform:uppercase}
+.use-paid{background:rgba(52,152,219,.15);color:#3498db;border:1px solid rgba(52,152,219,.3)}
+.use-social{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+.use-both{background:rgba(155,89,182,.15);color:#9b59b6;border:1px solid rgba(155,89,182,.3)}
 
-.m-inner{padding:32px 28px;height:100%;display:flex;flex-direction:column;justify-content:center;position:relative}
-.m-brand{font-family:'Times New Roman',Georgia,serif;font-size:10px;letter-spacing:2px;color:var(--mg);font-style:italic;position:absolute;top:16px;left:28px}
-.m-headline{font-family:'Times New Roman',Georgia,serif;font-size:28px;font-weight:400;line-height:1.2;margin-bottom:12px}
-.m-headline-lg{font-family:'Times New Roman',Georgia,serif;font-size:36px;font-weight:400;line-height:1.15;margin-bottom:12px}
-.m-headline-sm{font-family:'Times New Roman',Georgia,serif;font-size:22px;font-weight:400;line-height:1.25;margin-bottom:10px}
-.m-sub{font-size:12px;line-height:1.6;opacity:.7;margin-bottom:16px}
-.m-stat{font-size:56px;font-weight:800;color:var(--mg);line-height:1;margin-bottom:4px}
-.m-stat-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.6}
-.m-cta{display:inline-block;background:var(--mg);color:#fff;padding:10px 24px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-top:auto}
-.m-cta-outline{display:inline-block;border:1.5px solid;padding:10px 24px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.5px}
-.m-dshea{font-size:7px;opacity:.3;margin-top:12px;line-height:1.4;font-style:italic}
-.m-photo-placeholder{background:linear-gradient(135deg,#f5e6eb,#faf0f3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--mg);letter-spacing:.5px;font-weight:600}
-.m-divider{width:40px;height:2px;background:var(--mg);margin:12px 0}
+/* Backgrounds */
+.bg-w{background:var(--wh);color:var(--bk)}
+.bg-c{background:var(--cream);color:var(--bk)}
+.bg-m{background:var(--mg);color:#fff}
+.bg-d{background:var(--bk);color:#fff;border:1px solid #222}
+.bg-p{background:linear-gradient(180deg,var(--pink),#fff);color:var(--bk)}
+.bg-g{background:linear-gradient(135deg,var(--pink),var(--cream),#fff);color:var(--bk)}
 
-/* Product visual placeholder */
-.m-product{width:80px;height:120px;background:linear-gradient(180deg,var(--mg),#9e1d47);border-radius:8px 8px 4px 4px;margin:0 auto 16px;position:relative}
-.m-product:after{content:'skin';position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:7px;color:rgba(255,255,255,.6);letter-spacing:1px}
-.m-product-sm{width:50px;height:75px;background:linear-gradient(180deg,var(--mg),#9e1d47);border-radius:6px 6px 3px 3px;position:relative}
-.m-box{width:100px;height:80px;background:var(--mg);border-radius:4px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
-.m-box span{font-family:'Times New Roman',Georgia,serif;font-size:12px;color:rgba(255,255,255,.7);font-style:italic}
+/* Typography */
+.mk .brand{font-family:'Times New Roman',Georgia,serif;font-size:9px;letter-spacing:2px;color:var(--mg);font-style:italic;position:absolute;top:16px;left:50%;transform:translateX(-50%)}
+.mk .hl{font-family:'Times New Roman',Georgia,serif;font-size:22px;font-weight:400;line-height:1.2;margin:4px 0}
+.mk .hl-lg{font-family:'Times New Roman',Georgia,serif;font-size:28px;font-weight:400;line-height:1.15}
+.mk .hl-sm{font-family:'Times New Roman',Georgia,serif;font-size:18px;font-weight:400;line-height:1.25}
+.mk .sub{font-size:10px;line-height:1.5;opacity:.6;margin:6px 0}
+.mk .st{font-size:42px;font-weight:800;color:var(--mg);line-height:1}
+.mk .stl{font-size:9px;letter-spacing:1px;text-transform:uppercase;opacity:.5}
+.mk .cta{background:var(--mg);color:#fff;padding:7px 18px;border-radius:100px;font-size:9px;font-weight:700;margin-top:8px;display:inline-block}
+.mk .ds{font-size:6px;opacity:.25;margin-top:8px;line-height:1.3;font-style:italic;max-width:90%}
+.mk .dots{display:flex;gap:3px;justify-content:center;margin-top:8px}
+.mk .dot{width:5px;height:5px;border-radius:50%;background:rgba(0,0,0,.12)}.mk .dot.a{background:var(--mg)}
+.mk .play{width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.mk .play:after{content:'';border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent #fff;margin-left:2px}
+.mk .pill{background:var(--mg);color:#fff;font-size:7px;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:.5px;display:inline-block;margin:4px 0}
+.mk .box{width:70px;height:55px;background:var(--mg);border-radius:3px;display:flex;align-items:center;justify-content:center;margin:8px auto}
+.mk .box span{font-family:'Times New Roman',Georgia,serif;font-size:9px;color:rgba(255,255,255,.7);font-style:italic}
+.mk .prod{width:50px;height:80px;background:linear-gradient(180deg,var(--mg),#9e1d47);border-radius:6px 6px 3px 3px;margin:8px auto}
+.mk .comp{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin:8px 0}
+.mk .comp-l{background:rgba(184,37,90,.06);border:1px solid rgba(184,37,90,.15);border-radius:6px;padding:10px;text-align:center}
+.mk .comp-r{background:#f5f5f5;border-radius:6px;padding:10px;text-align:center}
+.mk .ph{background:linear-gradient(135deg,#f5e6eb,#faf0f3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:7px;color:var(--mg);letter-spacing:.3px;font-weight:600}
+.mk .sfp{background:rgba(0,0,0,.03);border-radius:6px;padding:8px;font-size:8px;line-height:1.8;text-align:left;width:100%;margin:6px 0}
+.mk .sfp p{display:flex;justify-content:space-between}
+.mk .sfp strong{color:var(--bk)}.mk .sfp em{color:var(--mg);font-style:normal;font-weight:700}
 
-/* Comparison layout */
-.m-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
-.m-compare-left{background:var(--pink);border-radius:8px;padding:16px;text-align:center}
-.m-compare-right{background:#f5f5f5;border-radius:8px;padding:16px;text-align:center}
-
-/* Carousel dots */
-.m-dots{display:flex;gap:4px;justify-content:center;margin-top:12px}
-.m-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.15)}
-.m-dot.active{background:var(--mg)}
-
-/* Video indicator */
-.m-play{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.m-play:after{content:'';width:0;height:0;border-style:solid;border-width:8px 0 8px 14px;border-color:transparent transparent transparent #fff;margin-left:3px}
-
-/* INFO SECTION */
-.ad-info{padding:16px 20px}
-.ad-info .ad-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
-.ad-info .ad-desc{font-size:11px;color:#888;line-height:1.6;margin-bottom:8px}
-.ad-info .ad-meta{display:flex;gap:8px;flex-wrap:wrap}
-.ad-info .tag{font-size:8px;padding:3px 8px;border-radius:100px;letter-spacing:.3px;font-weight:600}
-.tag-format{background:#1a1a1a;color:#555;border:1px solid #222}
-.tag-dshea{background:rgba(192,57,43,.08);color:#c0392b;border:1px solid rgba(192,57,43,.15)}
-.tag-source{background:rgba(230,126,34,.08);color:#e67e22;border:1px solid rgba(230,126,34,.15)}
-.tag-platform{background:rgba(39,174,96,.08);color:#27ae60;border:1px solid rgba(39,174,96,.15)}
+/* INFO */
+.info{padding:10px 14px;border-top:1px solid #1a1a1a}
+.info .t{font-size:11px;font-weight:700;color:#fff;margin-bottom:3px}
+.info .d{font-size:9px;color:#666;line-height:1.5}
+.info .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.info .tag{font-size:7px;padding:2px 6px;border-radius:100px;font-weight:600;letter-spacing:.2px}
+.t-fmt{background:#1a1a1a;color:#555;border:1px solid #222}
+.t-dshea{background:rgba(192,57,43,.06);color:#c0392b;border:1px solid rgba(192,57,43,.12)}
+.t-src{background:rgba(230,126,34,.06);color:#e67e22;border:1px solid rgba(230,126,34,.12)}
 </style>
 </head>
 <body>
-
 <div class="header">
-<h1>SENSITIVE ONES — 110 ADS & SOCIAL POSTS</h1>
-<p>Visual mockups for every piece · White + Magenta brand system · Populate photos after Apr 15 · DSHEA on all claims</p>
-<div class="cats">
-<div class="cat-btn on" onclick="filterCat('all')">All (110)</div>
-<div class="cat-btn" onclick="filterCat('hero')">Product Hero (10)</div>
-<div class="cat-btn" onclick="filterCat('edu')">Education (15)</div>
-<div class="cat-btn" onclick="filterCat('prob')">Problem (15)</div>
-<div class="cat-btn" onclick="filterCat('founder')">Founder (5)</div>
-<div class="cat-btn" onclick="filterCat('format')">Format (10)</div>
-<div class="cat-btn" onclick="filterCat('vs')">Us vs Generic (10)</div>
-<div class="cat-btn" onclick="filterCat('social')">Social Proof (10)</div>
-<div class="cat-btn" onclick="filterCat('life')">Lifestyle (10)</div>
-<div class="cat-btn" onclick="filterCat('sci')">Science (10)</div>
-<div class="cat-btn" onclick="filterCat('tea')">Industry Tea (10)</div>
-<div class="cat-btn" onclick="filterCat('cta')">CTA/Launch (5)</div>
+<h1>SENSITIVE ONES — 110 ADS & SOCIAL POSTS (ALL POPULATED)</h1>
+<p>Every piece has a visual mockup · Tagged: <span style="color:#3498db">PAID AD</span> · <span style="color:#2ecc71">SOCIAL POST</span> · <span style="color:#9b59b6">BOTH</span> · DSHEA flagged</p>
+<div class="filters">
+<div class="fbtn on" onclick="f('all')">All (110)</div>
+<div class="fbtn" onclick="f('hero')">Hero (10)</div>
+<div class="fbtn" onclick="f('edu')">Education (15)</div>
+<div class="fbtn" onclick="f('prob')">Problem (15)</div>
+<div class="fbtn" onclick="f('founder')">Founder (5)</div>
+<div class="fbtn" onclick="f('format')">Format (10)</div>
+<div class="fbtn" onclick="f('vs')">Us vs Generic (10)</div>
+<div class="fbtn" onclick="f('proof')">Social Proof (10)</div>
+<div class="fbtn" onclick="f('life')">Lifestyle (10)</div>
+<div class="fbtn" onclick="f('sci')">Science (10)</div>
+<div class="fbtn" onclick="f('tea')">Industry Tea (10)</div>
+<div class="fbtn" onclick="f('cta')">CTA/Launch (5)</div>
+<div class="fbtn" style="border-color:#3498db;color:#3498db" onclick="f('paid')">Paid Only</div>
+<div class="fbtn" style="border-color:#2ecc71;color:#2ecc71" onclick="f('social')">Social Only</div>
+<div class="fbtn" style="border-color:#9b59b6;color:#9b59b6" onclick="f('both')">Both</div>
 </div>
 </div>
-
 <div class="grid">
 
-<!-- ===== CATEGORY 1: PRODUCT HERO ===== -->
+<!-- ██ CAT 1: PRODUCT HERO (10) ██ -->
+<div class="ad show" data-cat="hero" data-use="both"><div class="mk bg-w"><div class="n">01</div><div class="fmt">Static 1:1</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="prod" style="width:60px;height:100px;margin-top:20px"></div><p class="hl-sm">Skin Support.</p><p class="sub">Coming soon.</p></div><div class="info"><p class="t">Single unit — white background</p><p class="d">Hero product on clean white. Dual-cap visible. Brand intro piece.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span><span class="tag t-src">Apr 15</span></div></div></div>
 
-<!-- AD 01 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-white">
-<div class="num-badge">01</div>
-<div class="format-badge">Static 1:1</div>
-<div class="m-inner" style="align-items:center;text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-product" style="width:100px;height:150px;margin-top:40px"></div>
-<p class="m-headline-sm" style="color:var(--bk);margin-top:16px">Skin Support.</p>
-<p class="m-sub" style="color:var(--bk)">Coming soon.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Single unit — white background</p>
-<p class="ad-desc">Hero product shot on clean white. Dual-cap visible. Label facing camera. Magenta box partially visible behind.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 1:1</span><span class="tag tag-source">Apr 15 Photo</span><span class="tag tag-platform">IG / TikTok / Meta</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="both"><div class="mk bg-c"><div class="n">02</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="box"><span>skin support</span></div><p class="hl-sm">28 units. 8 ingredients.<br>Every dose published.</p><div class="cta">Learn more</div></div><div class="info"><p class="t">Box + unit — editorial flat lay</p><p class="d">Magenta box with units beside it. Clean surface. Minimal props.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15</span></div></div></div>
 
-<!-- AD 02 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-cream">
-<div class="num-badge">02</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-box"><span>skin support</span></div>
-<p class="m-headline-sm" style="color:var(--bk)">28 units. 8 ingredients.<br>Every dose published.</p>
-<p class="m-sub" style="color:var(--bk)">No proprietary blends. No fairy dusting.</p>
-<div class="m-cta">Learn more</div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Box + unit — editorial flat lay</p>
-<p class="ad-desc">Magenta box with 1-2 units placed beside it. Clean surface. Minimal props.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15 Photo</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="social"><div class="mk bg-g"><div class="n">03</div><div class="fmt">Static 1:1</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div style="width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--mg),#d4467a);margin:16px auto;display:flex;align-items:center;justify-content:center"><div style="width:35px;height:55px;background:rgba(255,255,255,.2);border-radius:4px 4px 2px 2px"></div></div><p style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mg)">EXTREME CLOSE-UP</p></div><div class="info"><p class="t">Extreme close-up — cap detail</p><p class="d">Macro shot of dual-cap interface. Tablets on top, liquid underneath. No text. Pure product beauty.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span><span class="tag t-src">Apr 15 Macro</span></div></div></div>
 
-<!-- AD 03 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-gradient">
-<div class="num-badge">03</div>
-<div class="format-badge">Static 1:1</div>
-<div class="m-inner" style="align-items:center;justify-content:center">
-<div class="m-brand">sensitive ones</div>
-<div style="width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--mg),#d4467a);display:flex;align-items:center;justify-content:center">
-<div style="width:50px;height:80px;background:rgba(255,255,255,.2);border-radius:6px 6px 3px 3px"></div>
-</div>
-<p style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--mg);margin-top:16px">EXTREME CLOSE-UP · CAP DETAIL</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Extreme close-up — cap detail</p>
-<p class="ad-desc">Macro shot of dual-cap interface — tablets on top, liquid visible underneath. No text overlay. Pure product beauty.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 1:1</span><span class="tag tag-source">Apr 15 Macro</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="both"><div class="mk bg-w"><div class="n">04</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="prod"></div><p class="hl">8 ingredients.<br>Every dose published.</p><p class="sub">No proprietary blends.</p><p class="ds">*Not evaluated by FDA. Not intended to diagnose, treat, cure, or prevent any disease.</p></div><div class="info"><p class="t">"8 ingredients. Every dose published."</p><p class="d">Product front-facing with bold text overlay.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 04 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-white">
-<div class="num-badge">04</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div style="margin:20px 0"><div class="m-product"></div></div>
-<p class="m-headline" style="color:var(--bk)">8 ingredients.<br>Every dose published.</p>
-<p class="m-sub" style="color:var(--bk)">No proprietary blends.</p>
-<div class="m-dshea" style="color:var(--bk)">*This statement has not been evaluated by the FDA. Not intended to diagnose, treat, cure, or prevent any disease.</div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"8 ingredients. Every dose published."</p>
-<p class="ad-desc">Product front-facing with bold text overlay. White + magenta.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="social"><div class="mk bg-p"><div class="n">05</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:140px;height:140px;border-radius:50%;margin:12px auto">[MODEL HAND + PRODUCT]</div><p class="hl-sm">Inner care for<br>sensitive problems.</p></div><div class="info"><p class="t">Product in hand</p><p class="d">Model holding single unit. Natural light. Skin visible. Human warmth.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15 Model</span></div></div></div>
 
-<!-- AD 05 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-pink">
-<div class="num-badge">05</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="align-items:center;text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-photo-placeholder" style="width:200px;height:200px;border-radius:50%;margin:24px auto">[MODEL HAND + PRODUCT]</div>
-<p class="m-headline-sm" style="color:var(--bk)">Inner care for<br>sensitive problems.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Product in hand</p>
-<p class="ad-desc">Model holding single unit. Natural light. Skin visible. Product is focus but human warmth present.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15 Model</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="social"><div class="mk bg-w"><div class="n">06</div><div class="fmt">Static 1:1</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div style="display:flex;gap:3px;margin:16px auto"><div style="width:55px;height:44px;background:var(--mg);border-radius:2px"></div><div style="width:55px;height:44px;background:var(--mg);border-radius:2px;opacity:.85"></div><div style="width:55px;height:44px;background:var(--mg);border-radius:2px;opacity:.7"></div></div><p style="font-size:8px;letter-spacing:1px;color:var(--bk);text-transform:uppercase">skin support by sensitive ones</p></div><div class="info"><p class="t">Box stack — 3 high</p><p class="d">Three magenta boxes stacked. Side view. Premium.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span><span class="tag t-src">Apr 15</span></div></div></div>
 
-<!-- AD 06 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-white">
-<div class="num-badge">06</div>
-<div class="format-badge">Static 1:1</div>
-<div class="m-inner" style="align-items:center;text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div style="display:flex;gap:4px;align-items:flex-end;margin:24px 0">
-<div style="width:70px;height:56px;background:var(--mg);border-radius:3px"></div>
-<div style="width:70px;height:56px;background:var(--mg);border-radius:3px;opacity:.85"></div>
-<div style="width:70px;height:56px;background:var(--mg);border-radius:3px;opacity:.7"></div>
-</div>
-<p style="font-size:10px;letter-spacing:1px;color:var(--bk);text-transform:uppercase">skin support by sensitive ones</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Box stack — 3 high</p>
-<p class="ad-desc">Three magenta boxes stacked. Side view. Premium feel.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 1:1</span><span class="tag tag-source">Apr 15</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="paid"><div class="mk bg-w"><div class="n">07</div><div class="fmt">Static 4:5</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="st" style="margin-top:16px">$2.46</p><p class="stl">per day</p><div style="width:30px;height:2px;background:var(--mg);margin:10px auto"></div><p class="sub">Less than your morning coffee.<br>More than most collagen supplements.</p><div class="cta">Subscribe — $69/mo</div></div><div class="info"><p class="t">"$2.46/day" price anchor</p><p class="d">Daily cost comparison. Direct conversion CTA.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15</span></div></div></div>
 
-<!-- AD 07 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-white">
-<div class="num-badge">07</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-stat" style="margin-top:40px">$2.46</p>
-<p class="m-stat-label" style="color:var(--bk)">per day</p>
-<div class="m-divider" style="margin:16px auto"></div>
-<p class="m-sub" style="color:var(--bk)">Less than your morning coffee.<br>More than most collagen supplements.</p>
-<div class="m-cta">Subscribe — $69/mo</div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"$2.46/day" price anchor</p>
-<p class="ad-desc">Product shot with price anchoring. Daily cost comparison.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="social"><div class="mk bg-c"><div class="n">08</div><div class="fmt">Static 1:1</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p style="font-size:36px;margin:12px 0">🍍</p><p class="hl-sm">Pineapple flavored.<br>8 active ingredients.</p><p class="sub">Dual-delivery formula for skin hydration + glow.</p></div><div class="info"><p class="t">Pineapple visual cue</p><p class="d">Product with fresh pineapple. Subtle flavor connection.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span><span class="tag t-src">Apr 15 Props</span></div></div></div>
 
-<!-- AD 08 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-cream">
-<div class="num-badge">08</div>
-<div class="format-badge">Static 1:1</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div style="font-size:48px;margin:20px 0">🍍</div>
-<p class="m-headline-sm" style="color:var(--bk)">Pineapple flavored.<br>8 active ingredients.</p>
-<p class="m-sub" style="color:var(--bk)">Dual-delivery formula for skin hydration + glow.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Pineapple visual cue</p>
-<p class="ad-desc">Product alongside fresh pineapple. Subtle flavor connection. Light, fresh, editorial.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 1:1</span><span class="tag tag-source">Apr 15 Props</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="both"><div class="mk bg-w"><div class="n">09</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="sfp"><p style="font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mg);font-weight:700;margin-bottom:4px;display:block">SUPPLEMENT FACTS</p><p><strong>Verisol® Collagen</strong><em>5,000mg</em></p><p><strong>Hyaluronic Acid</strong><em>120mg</em></p><p><strong>Vitamin C</strong><em>200mg</em></p><p><strong>Vitamin E</strong><em>30mg</em></p><p><strong>Beta-Carotene</strong><em>6mg</em></p><p><strong>Riboflavin (B2)</strong><em>2mg</em></p><p><strong>Pantothenic Acid</strong><em>5mg</em></p><p><strong>Pine Bark Extract</strong><em>100mg</em></p></div><p class="hl-sm">This is what transparency<br>looks like.</p></div><div class="info"><p class="t">Supplement Facts panel hero</p><p class="d">Full ingredient list visible. "This is what transparency looks like."</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-dshea">DSHEA caption</span></div></div></div>
 
-<!-- AD 09 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-white">
-<div class="num-badge">09</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner">
-<div class="m-brand">sensitive ones</div>
-<div style="margin-top:32px;background:var(--cream);border-radius:8px;padding:20px;font-size:10px;line-height:2;color:var(--bk)">
-<p style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--mg);margin-bottom:8px;font-weight:700">SUPPLEMENT FACTS</p>
-<p><strong>Verisol® Collagen Peptides</strong> <span style="float:right;color:var(--mg)">5,000mg</span></p>
-<p><strong>Hyaluronic Acid</strong> <span style="float:right;color:var(--mg)">120mg</span></p>
-<p><strong>Vitamin C</strong> <span style="float:right;color:var(--mg)">200mg</span></p>
-<p><strong>Vitamin E</strong> <span style="float:right;color:var(--mg)">30mg</span></p>
-<p><strong>Beta-Carotene</strong> <span style="float:right;color:var(--mg)">6mg</span></p>
-<p><strong>Riboflavin (B2)</strong> <span style="float:right;color:var(--mg)">2mg</span></p>
-<p><strong>Pantothenic Acid (B5)</strong> <span style="float:right;color:var(--mg)">5mg</span></p>
-<p><strong>Pine Bark Extract</strong> <span style="float:right;color:var(--mg)">100mg</span></p>
-</div>
-<p class="m-headline-sm" style="color:var(--bk);margin-top:16px;text-align:center">This is what<br>transparency looks like.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Supplement Facts panel hero</p>
-<p class="ad-desc">Close-up of actual Supplement Facts. Every dose visible. "This is what transparency looks like."</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15</span><span class="tag tag-dshea">DSHEA in caption</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="hero" data-use="both"><div class="mk bg-c"><div class="n">10</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:120px;margin:12px 0">[PRODUCT ON BATHROOM SHELF]</div><p class="hl-sm">The step your<br>dermatologist can't see.</p><p class="ds">*Not evaluated by FDA.</p></div><div class="info"><p class="t">Product on bathroom shelf</p><p class="d">Lifestyle context. Product among skincare. Implied benefit.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15 Lifestyle</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 10 -->
-<div class="ad-card show" data-cat="hero">
-<div class="mockup m-cream">
-<div class="num-badge">10</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-photo-placeholder" style="width:100%;height:180px;border-radius:8px;margin:24px 0">[PRODUCT ON BATHROOM SHELF WITH SKINCARE]</div>
-<p class="m-headline-sm" style="color:var(--bk)">The step your<br>dermatologist can't see.</p>
-<p class="m-dshea" style="color:var(--bk)">*Not evaluated by FDA. Not intended to diagnose, treat, cure, or prevent any disease.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">Product on bathroom shelf</p>
-<p class="ad-desc">Product next to skincare products. Context shot. "The step your dermatologist can't see."</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15 Lifestyle</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<!-- ██ CAT 2: INGREDIENT EDUCATION (15) ██ -->
+<div class="ad show" data-cat="edu" data-use="both"><div class="mk bg-w"><div class="n">11</div><div class="fmt">Carousel 5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="comp"><div class="comp-l"><p style="font-size:28px;font-weight:800;color:var(--mg)">5,000<span style="font-size:10px">mg</span></p><p style="font-size:8px;font-weight:700">Skin Support</p></div><div class="comp-r"><p style="font-size:28px;font-weight:800;color:#ccc">50<span style="font-size:10px">mg</span></p><p style="font-size:8px;color:#999">Other brands</p></div></div><p class="hl-sm">The industry calls it<br>"fairy dusting."</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Your collagen might have 50mg. Ours has 5,000mg."</p><p class="d">Dose comparison carousel. 5 slides explaining fairy dusting.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- ===== CATEGORY 2: INGREDIENT EDUCATION ===== -->
+<div class="ad show" data-cat="edu" data-use="both"><div class="mk bg-p"><div class="n">12</div><div class="fmt">Carousel 5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-lg" style="margin-top:16px">What's<br>fairy dusting?</p><div style="width:30px;height:2px;background:var(--mg);margin:8px auto"></div><p class="sub">Adding just enough of an ingredient<br>to put it on the label —<br>not enough to actually do anything.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"What's fairy dusting?"</p><p class="d">Definition → how brands do it → how to check → SO's approach.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 11 -->
-<div class="ad-card show" data-cat="edu">
-<div class="mockup m-white">
-<div class="num-badge">11</div>
-<div class="format-badge">Carousel</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-compare" style="margin-top:32px">
-<div class="m-compare-left">
-<p style="font-size:36px;font-weight:800;color:var(--mg)">5,000<span style="font-size:14px">mg</span></p>
-<p style="font-size:10px;font-weight:700;color:var(--bk);margin-top:4px">Skin Support</p>
-<p style="font-size:9px;color:#666;margin-top:4px">Published on the label</p>
-</div>
-<div class="m-compare-right">
-<p style="font-size:36px;font-weight:800;color:#ccc">50<span style="font-size:14px">mg</span></p>
-<p style="font-size:10px;font-weight:700;color:#999;margin-top:4px">Some other brands</p>
-<p style="font-size:9px;color:#bbb;margin-top:4px">Hidden in "proprietary blend"</p>
-</div>
-</div>
-<p class="m-headline-sm" style="color:var(--bk)">The industry calls it<br>"fairy dusting."</p>
-<div class="m-dots"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"Your collagen might have 50mg. Ours has 5,000mg."</p>
-<p class="ad-desc">Side-by-side dose comparison. 5-slide carousel explaining fairy dusting.</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 5 slides</span><span class="tag tag-dshea">DSHEA required</span><span class="tag tag-platform">IG Feed</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="both"><div class="mk bg-w"><div class="n">13</div><div class="fmt">Carousel 5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:12px">What's a<br>proprietary blend?</p><div class="sfp" style="margin-top:10px"><p style="font-size:7px;font-weight:700;color:var(--bk);margin-bottom:2px;display:block">EXAMPLE LABEL:</p><p style="font-size:9px;color:var(--bk);display:block">Proprietary Skin Blend... <span style="color:var(--mg);font-weight:700">500mg</span></p><p style="font-size:7px;color:#999;display:block;padding-left:8px">Collagen, HA, Vit C, Biotin, CoQ10, Zinc, Selenium, Astaxanthin</p><p style="font-size:6px;color:var(--mg);margin-top:4px;font-weight:700;display:block">↑ 8 ingredients. 500mg total. How much of each? You'll never know.</p></div><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"What's a proprietary blend?"</p><p class="d">Fake label → explains loophole → shows SO's full label.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 12 -->
-<div class="ad-card show" data-cat="edu">
-<div class="mockup m-pink">
-<div class="num-badge">12</div>
-<div class="format-badge">Carousel</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline-lg" style="color:var(--bk);margin-top:32px">What's<br>fairy dusting?</p>
-<div class="m-divider" style="margin:12px auto"></div>
-<p class="m-sub" style="color:var(--bk);font-size:13px">Adding just enough of an ingredient<br>to put it on the label —<br>not enough for it to actually do anything.</p>
-<div class="m-dots"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"What's fairy dusting?"</p>
-<p class="ad-desc">Definition → how brands do it → how to check → SO's approach. Education, not selling.</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 5 slides</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="both"><div class="mk bg-c"><div class="n">14</div><div class="fmt">Carousel 6</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:12px">What is<br>Verisol®?</p><div style="width:30px;height:2px;background:var(--mg);margin:8px auto"></div><p class="sub">Not generic collagen.<br>GELITA AG, Germany.<br>4 published RCTs.</p><p style="font-size:8px;color:var(--mg);font-weight:700">20% wrinkle reduction in 8 weeks</p><p style="font-size:7px;color:#999">PubMed 24401291</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"What is Verisol®?"</p><p class="d">Deep dive into hero ingredient. GELITA AG, specific peptide, 4 RCTs.</p><div class="tags"><span class="tag t-fmt">Carousel 6</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 13 -->
-<div class="ad-card show" data-cat="edu">
-<div class="mockup m-white">
-<div class="num-badge">13</div>
-<div class="format-badge">Carousel</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline" style="color:var(--bk);margin-top:32px">What's a<br>proprietary blend?</p>
-<div style="background:var(--cream);border-radius:8px;padding:16px;margin:16px 0;text-align:left">
-<p style="font-size:10px;font-weight:700;color:var(--bk);margin-bottom:4px">EXAMPLE LABEL:</p>
-<p style="font-size:11px;color:var(--bk)">Proprietary Skin Blend..... <span style="color:var(--mg);font-weight:700">500mg</span></p>
-<p style="font-size:9px;color:#999;padding-left:12px">Collagen, Hyaluronic Acid, Vitamin C,<br>Biotin, CoQ10, Zinc, Selenium, Astaxanthin</p>
-<p style="font-size:8px;color:var(--mg);margin-top:8px;font-weight:700">↑ 8 ingredients. 500mg total. How much of each? You'll never know.</p>
-</div>
-<div class="m-dots"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"What's a proprietary blend?"</p>
-<p class="ad-desc">Shows a fake label → explains the loophole → shows SO's full label. Powerful education.</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 5 slides</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="both"><div class="mk bg-w"><div class="n">15</div><div class="fmt">Carousel 4</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Why Vitamin C is in your<br>collagen supplement.</p><div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FFA500);margin:10px auto;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff">C</div><p class="sub">Without it, collagen can't be synthesized.<br><strong style="color:var(--mg)">200mg in Skin Support.</strong></p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Why Vitamin C is in your collagen"</p><p class="d">Essential cofactor education. "Without it, the collagen can't do its job."</p><div class="tags"><span class="tag t-fmt">Carousel 4</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 14 -->
-<div class="ad-card show" data-cat="edu">
-<div class="mockup m-cream">
-<div class="num-badge">14</div>
-<div class="format-badge">Carousel 6</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline" style="color:var(--bk);margin-top:24px">What is<br>Verisol®?</p>
-<div class="m-divider" style="margin:12px auto"></div>
-<p class="m-sub" style="color:var(--bk)">Not generic collagen.<br>GELITA AG, Germany.<br>4 published RCTs.<br>Optimized for skin.</p>
-<p style="font-size:9px;color:var(--mg);font-weight:700">20% wrinkle reduction in 8 weeks</p>
-<p style="font-size:8px;color:#999;margin-top:4px">Proksch et al., 2014 · PubMed 24401291</p>
-<div class="m-dots"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"What is Verisol®?"</p>
-<p class="ad-desc">Deep dive into the hero ingredient. GELITA AG, specific peptide, 4 RCTs, PubMed links.</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 6 slides</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="both"><div class="mk bg-g"><div class="n">16</div><div class="fmt">Carousel 4</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:12px">Hyaluronic acid —<br>topical vs oral.</p><div class="comp" style="margin-top:10px"><div style="background:rgba(255,255,255,.5);border-radius:6px;padding:8px"><p style="font-size:16px;font-weight:800;color:var(--bk)">Topical</p><p style="font-size:7px;color:#666">Sits on surface</p></div><div style="background:rgba(184,37,90,.08);border-radius:6px;padding:8px;border:1px solid rgba(184,37,90,.2)"><p style="font-size:16px;font-weight:800;color:var(--mg)">Oral</p><p style="font-size:7px;color:var(--mg)">Reaches dermis</p></div></div><p style="font-size:8px;margin-top:4px"><strong>120mg</strong> sodium hyaluronate</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"HA — topical vs oral"</p><p class="d">Oral HA reaches the dermis from inside — deeper than creams.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 15 -->
-<div class="ad-card show" data-cat="edu">
-<div class="mockup m-white">
-<div class="num-badge">15</div>
-<div class="format-badge">Carousel 4</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline-sm" style="color:var(--bk);margin-top:32px">Why Vitamin C is in your<br>collagen supplement.</p>
-<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FFA500);margin:16px auto;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff">C</div>
-<p class="m-sub" style="color:var(--bk)">Without it, collagen can't be synthesized.<br>It's the essential cofactor.<br><strong style="color:var(--mg)">200mg in Skin Support.</strong></p>
-<div class="m-dots"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"Why Vitamin C is in your collagen supplement"</p>
-<p class="ad-desc">Most people don't know collagen needs Vitamin C. Essential cofactor. "Without it, the collagen can't do its job."</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 4 slides</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-c"><div class="n">17</div><div class="fmt">Carousel 10</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:8px">The 8 ingredients<br>in Skin Support.</p><p class="sub">And what each one does.</p><div class="sfp" style="padding:6px"><p style="font-size:7px;color:var(--mg);font-weight:700;display:block">SLIDE 1 OF 10</p><p style="font-size:9px;display:block"><strong>Verisol® Collagen</strong> — 5,000mg</p></div><p style="font-size:7px;color:#999">→ Swipe for all 8</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"The 8 ingredients — what each does"</p><p class="d">Full 10-slide carousel. 1 per ingredient + cover + CTA. Most comprehensive.</p><div class="tags"><span class="tag t-fmt">Carousel 10</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 16 -->
-<div class="ad-card show" data-cat="edu">
-<div class="mockup m-gradient">
-<div class="num-badge">16</div>
-<div class="format-badge">Carousel 4</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline-sm" style="color:var(--bk);margin-top:32px">Hyaluronic acid —<br>topical vs oral.</p>
-<div class="m-compare" style="margin-top:16px">
-<div style="background:rgba(255,255,255,.5);border-radius:8px;padding:14px;text-align:center">
-<p style="font-size:20px;font-weight:800;color:var(--bk)">Topical</p>
-<p style="font-size:9px;color:#666;margin-top:4px">Sits on skin surface</p>
-</div>
-<div style="background:rgba(184,37,90,.08);border-radius:8px;padding:14px;text-align:center;border:1px solid rgba(184,37,90,.2)">
-<p style="font-size:20px;font-weight:800;color:var(--mg)">Oral</p>
-<p style="font-size:9px;color:var(--mg);margin-top:4px">Reaches the dermis</p>
-</div>
-</div>
-<p style="font-size:10px;color:var(--bk);margin-top:8px"><strong>120mg</strong> sodium hyaluronate in Skin Support</p>
-<div class="m-dots"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"Hyaluronic acid — topical vs oral"</p>
-<p class="ad-desc">Topical sits on surface. Oral reaches the dermis from inside — deeper than creams. 120mg daily.</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 4 slides</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-w"><div class="n">18</div><div class="fmt">Reel 60s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">How to read a<br>supplement label<br>(in 60 seconds)</p><div style="width:30px;height:2px;background:var(--mg);margin:8px auto"></div><p class="sub">Supplement Facts vs Nutrition Facts.<br>Serving size. % Daily Value.<br>"Proprietary blend" = red flag.</p><div class="play"></div></div><div class="info"><p class="t">"How to read a supplement label"</p><p class="d">Quick education video. 60 seconds. If the dose isn't listed, you don't know.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span></div></div></div>
 
-<!-- AD 17 -->
-<div class="ad-card show" data-cat="edu">
-<div class="mockup m-cream">
-<div class="num-badge">17</div>
-<div class="format-badge">Carousel 10</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline" style="color:var(--bk);margin-top:24px">The 8 ingredients<br>in Skin Support.</p>
-<p class="m-sub" style="color:var(--bk)">And what each one does.</p>
-<div style="background:var(--wh);border-radius:8px;padding:12px;margin-top:12px;text-align:left">
-<p style="font-size:10px;color:var(--mg);font-weight:700">SLIDE 1 OF 10</p>
-<p style="font-size:12px;color:var(--bk);margin-top:4px"><strong>Verisol® Collagen</strong> — 5,000mg</p>
-<p style="font-size:10px;color:#666">The clinically studied dose. Structure and elasticity from the inside.</p>
-</div>
-<p style="font-size:8px;color:#999;margin-top:8px">→ Swipe for all 8</p>
-<div class="m-dots"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"The 8 ingredients — and what each one does"</p>
-<p class="ad-desc">Full 10-slide carousel. 1 per ingredient + cover + CTA. Most comprehensive education piece.</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 10 slides</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-c"><div class="n">19</div><div class="fmt">Static infographic</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Natural vs synthetic<br>Vitamin E</p><div class="comp"><div class="comp-l"><p style="font-size:11px;font-weight:700;color:var(--mg)">d-alpha</p><p style="font-size:7px">Natural · Ours</p></div><div class="comp-r"><p style="font-size:11px;font-weight:700;color:#ccc">dl-alpha</p><p style="font-size:7px;color:#bbb">Synthetic</p></div></div><p class="sub">One letter. 2× the bioavailability.</p></div><div class="info"><p class="t">"Natural vs synthetic Vitamin E"</p><p class="d">d-alpha tocopherol (natural, SO) vs dl-alpha (synthetic). "One letter makes a difference."</p><div class="tags"><span class="tag t-fmt">Infographic</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- ===== CATEGORY 3: PROBLEM-SOLUTION ===== -->
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-p"><div class="n">20</div><div class="fmt">Carousel 5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">What does<br>"clinically studied"<br>actually mean?</p><div style="width:30px;height:2px;background:var(--mg);margin:8px auto"></div><p class="sub">Not "clinically proven."<br>The INGREDIENT was tested.<br>We say studied, not proven.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"What does 'clinically studied' mean?"</p><p class="d">Science literacy education. RCT, double-blind, placebo-controlled explained.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span></div></div></div>
 
-<!-- AD 26 -->
-<div class="ad-card show" data-cat="prob">
-<div class="mockup m-white">
-<div class="num-badge">26</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-stat" style="margin-top:32px">46%</p>
-<p class="m-stat-label" style="color:var(--bk)">OF SUPPLEMENTS FAILED TESTING IN 2024</p>
-<div class="m-divider" style="margin:20px auto"></div>
-<p class="m-sub" style="color:var(--bk)">Almost half didn't match what they claimed.<br>We publish every ingredient and every dose.<br>Then we test it.</p>
-<p style="font-size:8px;color:#999">Source: ConsumerLab.com, 2024</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"46% of supplements failed testing in 2024."</p>
-<p class="ad-desc">ConsumerLab stat. Industry indictment → SO as the solution.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-dshea">DSHEA if claim added</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-w"><div class="n">21</div><div class="fmt">Carousel 4</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Pine bark extract —<br>the antioxidant you<br>haven't heard of.</p><p class="sub">Pinus pinaster. 100mg.<br>Studied for skin elasticity.<br>20× the antioxidant power of Vitamin C.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Pine bark extract — the antioxidant you haven't heard of"</p><p class="d">Education on the least-known ingredient. Pinus pinaster, 100mg, PubMed evidence.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 27 -->
-<div class="ad-card show" data-cat="prob">
-<div class="mockup m-cream">
-<div class="num-badge">27</div>
-<div class="format-badge">Carousel 3</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline" style="color:var(--bk);margin-top:24px">The label says<br>15 ingredients.</p>
-<p class="m-headline" style="color:var(--mg)">The label doesn't say<br>how much.</p>
-<div class="m-dots" style="margin-top:20px"><div class="m-dot active"></div><div class="m-dot"></div><div class="m-dot"></div></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"The label says 15 ingredients. Not how much."</p>
-<p class="ad-desc">Generic label vs SO's Supplement Facts. Visual proof of the proprietary blend problem.</p>
-<div class="ad-meta"><span class="tag tag-format">Carousel 3 slides</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-c"><div class="n">22</div><div class="fmt">Static infographic</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">B2 and B5 —<br>the skin vitamins<br>nobody talks about.</p><p class="sub">Riboflavin: skin cell metabolism.<br>Pantothenic acid: skin barrier.<br>Not glamorous. But essential.</p><p style="font-size:8px;color:var(--mg);font-weight:700">2mg + 5mg in Skin Support</p></div><div class="info"><p class="t">"B2 and B5 — the skin vitamins nobody talks about"</p><p class="d">Unglamorous but essential ingredients. 154% + 100% DV.</p><div class="tags"><span class="tag t-fmt">Infographic</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 28 -->
-<div class="ad-card show" data-cat="prob">
-<div class="mockup m-white">
-<div class="num-badge">28</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-top:32px">THEY SAY</p>
-<p class="m-headline-sm" style="color:#ccc">"Clinically studied"</p>
-<p style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mg);margin-top:16px">BUT</p>
-<p style="font-size:13px;color:var(--bk);line-height:1.6;margin-top:4px">The study used 2,500-5,000mg.<br>Their product uses 50mg.<br>They still put it on the label.</p>
-<div class="m-divider" style="margin:16px auto"></div>
-<p style="font-size:12px;color:var(--mg);font-weight:700">We use 5,000mg. You can check.</p>
-<p class="m-dshea" style="color:var(--bk)">*Not evaluated by FDA.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"'Clinically studied' when the dose isn't even close."</p>
-<p class="ad-desc">Exposes the dose gap between clinical studies and actual product formulations.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-g"><div class="n">23</div><div class="fmt">Reel 30s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Why we chose<br>pineapple flavor.</p><p class="sub">"We tried 12 flavors.<br>Pineapple won."</p><p style="font-size:36px;margin:8px 0">🍍</p><div class="play"></div></div><div class="info"><p class="t">"Why we chose pineapple flavor"</p><p class="d">Light, fun BTS. Masks collagen taste naturally. No artificial flavors.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span><span class="tag t-src">Apr 15 BTS</span></div></div></div>
 
-<!-- AD 31 -->
-<div class="ad-card show" data-cat="prob">
-<div class="mockup m-mg">
-<div class="num-badge">31</div>
-<div class="format-badge">Reel 60s</div>
-<div class="m-inner" style="text-align:center">
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:10px;letter-spacing:2px;font-style:italic;opacity:.6">sensitive ones</p>
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:28px;margin-top:24px;line-height:1.3">The supplement industry<br>has a transparency<br>problem.</p>
-<div style="width:40px;height:2px;background:rgba(255,255,255,.3);margin:20px auto"></div>
-<p style="font-size:11px;opacity:.7;line-height:1.7">Proprietary blends.<br>Fairy dusting.<br>Underdosed ingredients.<br>"Clinically studied" at a fraction of the dose.</p>
-<p style="font-size:12px;margin-top:16px;font-weight:700">We built the opposite.</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"The supplement industry has a transparency problem."</p>
-<p class="ad-desc">Manifesto video. Text-on-screen. Bold. Direct. Sets the brand position.</p>
-<div class="ad-meta"><span class="tag tag-format">Reel / TikTok 60s</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="social"><div class="mk bg-w"><div class="n">24</div><div class="fmt">Carousel 3</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Beta-carotene at 6mg —<br>why this dose matters.</p><p class="sub">Converts to Vitamin A as needed.<br>The concern was at 20mg in smokers.<br>We use 6mg — safe, effective.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Beta-carotene at 6mg"</p><p class="d">Proactive dose education. Addresses ATBC concern before anyone asks.</p><div class="tags"><span class="tag t-fmt">Carousel 3</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 36 -->
-<div class="ad-card show" data-cat="prob">
-<div class="mockup m-white">
-<div class="num-badge">36</div>
-<div class="format-badge">Static 1:1</div>
-<div class="m-inner" style="text-align:center;justify-content:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline-lg" style="color:var(--bk)">Read the back<br>of the label.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"Read the back of the label."</p>
-<p class="ad-desc">Simple. Powerful. One instruction that changes how people buy supplements.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 1:1</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="edu" data-use="both"><div class="mk bg-c"><div class="n">25</div><div class="fmt">Carousel 6</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Collagen is not a<br>one-ingredient solution.</p><p class="sub">Your body needs cofactors (Vitamin C),<br>antioxidants (E, Pine Bark),<br>barrier support (B5), hydration (HA).</p><p style="font-size:9px;color:var(--mg);font-weight:700;margin-top:4px">That's why Skin Support has 8, not 1.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Collagen is not a one-ingredient solution"</p><p class="d">Why 8 actives > just collagen. Cofactors, antioxidants, barrier.</p><div class="tags"><span class="tag t-fmt">Carousel 6</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 40 -->
-<div class="ad-card show" data-cat="prob">
-<div class="mockup m-pink">
-<div class="num-badge">40</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline" style="color:var(--bk);margin-top:32px">If "proprietary blend"<br>makes you suspicious,</p>
-<p class="m-headline" style="color:var(--mg)">this was built<br>for you.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"If 'proprietary blend' makes you suspicious, this was built for you."</p>
-<p class="ad-desc">Direct speak to Mina persona. Matches Klaviyo Email 2.3 energy.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span></div>
-</div>
-</div>
+<!-- ██ CAT 3: PROBLEM-SOLUTION (15) ██ -->
+<div class="ad show" data-cat="prob" data-use="both"><div class="mk bg-w"><div class="n">26</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="st" style="margin-top:16px">46%</p><p class="stl">OF SUPPLEMENTS FAILED TESTING IN 2024</p><div style="width:30px;height:2px;background:var(--mg);margin:12px auto"></div><p class="sub">We publish every dose. Then we test it.</p><p style="font-size:7px;color:#999">Source: ConsumerLab.com, 2024</p></div><div class="info"><p class="t">"46% failed testing in 2024."</p><p class="d">ConsumerLab stat. Industry indictment → SO as solution.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span></div></div></div>
 
-<!-- ===== CATEGORY 5: FORMAT SHOWCASE ===== -->
+<div class="ad show" data-cat="prob" data-use="both"><div class="mk bg-c"><div class="n">27</div><div class="fmt">Carousel 3</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:12px">The label says<br>15 ingredients.</p><p class="hl" style="color:var(--mg)">The label doesn't say<br>how much.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"The label says 15 ingredients. Not how much."</p><p class="d">Generic label vs SO Supplement Facts. Visual proof.</p><div class="tags"><span class="tag t-fmt">Carousel 3</span></div></div></div>
 
-<!-- AD 46 -->
-<div class="ad-card show" data-cat="format">
-<div class="mockup m-cream">
-<div class="num-badge">46</div>
-<div class="format-badge">Reel 30s</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline" style="color:var(--bk);margin-top:24px">Cap.<br>Tablets.<br>Shot.<br>Done.</p>
-<div class="m-product" style="margin:20px auto"></div>
-<p class="m-sub" style="color:var(--bk)">Under 30 seconds. Every morning.</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"Cap. Tablets. Shot. Done."</p>
-<p class="ad-desc">Hero ritual video. Twist → take → drink. Clean audio. Under 30 seconds real-time.</p>
-<div class="ad-meta"><span class="tag tag-format">Reel / TikTok 30s</span><span class="tag tag-source">Apr 15 ASMR</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="paid"><div class="mk bg-w"><div class="n">28</div><div class="fmt">Static 4:5</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-top:16px">THEY SAY</p><p class="hl-sm" style="color:#ccc">"Clinically studied"</p><p style="font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mg);margin-top:8px">BUT</p><p class="sub">The study used 5,000mg.<br>Their product uses 50mg.</p><div style="width:30px;height:2px;background:var(--mg);margin:8px auto"></div><p style="font-size:10px;color:var(--mg);font-weight:700">We use 5,000mg. You can check.</p><p class="ds">*Not evaluated by FDA.</p></div><div class="info"><p class="t">"'Clinically studied' when the dose isn't close."</p><p class="d">Exposes dose gap. Direct conversion.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 47 -->
-<div class="ad-card show" data-cat="format">
-<div class="mockup m-dark">
-<div class="num-badge">47</div>
-<div class="format-badge">Reel 15s</div>
-<div class="m-inner" style="text-align:center">
-<p style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#555">ASMR</p>
-<div style="margin:24px auto;width:120px;height:120px;border-radius:50%;border:2px solid #333;display:flex;align-items:center;justify-content:center">
-<div style="width:8px;height:40px;background:var(--mg);border-radius:4px;animation:pulse 1s infinite alternate"></div>
-<div style="width:8px;height:60px;background:var(--mg);border-radius:4px;margin:0 4px;animation:pulse 1s .2s infinite alternate"></div>
-<div style="width:8px;height:30px;background:var(--mg);border-radius:4px;animation:pulse 1s .4s infinite alternate"></div>
-</div>
-<p style="font-size:11px;color:#666;margin-top:12px">cap twist · click · tablets on palm · liquid pour</p>
-<p style="font-size:8px;color:#444;margin-top:8px">🔊 sound on</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">ASMR cap click — no music</p>
-<p class="ad-desc">Pure foley: cap twist, click, tablets, pour. Scroll-stopper. No text, no music.</p>
-<div class="ad-meta"><span class="tag tag-format">Reel 15s</span><span class="tag tag-source">Apr 15 ASMR capture</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="social"><div class="mk bg-d"><div class="n">29</div><div class="fmt">Reel 45s</div><div class="use use-social">SOCIAL</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:9px;letter-spacing:2px;font-style:italic;opacity:.4;margin-bottom:12px">sensitive ones</p><p class="hl-sm">Charging $60 for products<br>with $2 worth<br>of ingredients.</p><p class="sub" style="color:#888">We spent the money on the formula,<br>not on a Super Bowl ad.</p><div class="play"></div></div><div class="info"><p class="t">"$60 products with $2 of ingredients"</p><p class="d">Industry economics exposed. Honest about where money goes.</p><div class="tags"><span class="tag t-fmt">Reel 45s</span></div></div></div>
 
-<!-- AD 48 -->
-<div class="ad-card show" data-cat="format">
-<div class="mockup m-white">
-<div class="num-badge">48</div>
-<div class="format-badge">Reel 30s</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-compare" style="margin-top:24px">
-<div style="background:#f5f5f5;border-radius:8px;padding:14px;text-align:center">
-<p style="font-size:11px;color:#999;line-height:1.6">Scoop<br>Water<br>Mix<br>Clean<br>2 minutes</p>
-</div>
-<div style="background:var(--pink);border-radius:8px;padding:14px;text-align:center;border:2px solid var(--mg)">
-<p style="font-size:11px;color:var(--mg);line-height:1.6;font-weight:700">Twist<br>Take<br>Drink<br><br>30 seconds</p>
-</div>
-</div>
-<p class="m-headline-sm" style="color:var(--bk);margin-top:12px">One object.<br>One ritual.</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"No water. No scoop. No blender. No measuring."</p>
-<p class="ad-desc">Split screen: powder supplement ritual (messy) vs SO (30 seconds). "One object. One ritual."</p>
-<div class="ad-meta"><span class="tag tag-format">Reel 30s</span><span class="tag tag-source">Apr 15</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="social"><div class="mk bg-w"><div class="n">30</div><div class="fmt">Reel 30s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:16px">Flip the<br>bottle over.</p><p class="sub">Before you buy any supplement, flip it.<br>Look for exact doses per ingredient.<br>Not a "proprietary blend."</p><div class="play"></div></div><div class="info"><p class="t">"Flip the bottle over."</p><p class="d">Simple instruction. Education, not selling.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span></div></div></div>
 
-<!-- ===== CATEGORY 6: US VS GENERIC ===== -->
+<div class="ad show" data-cat="prob" data-use="paid"><div class="mk bg-m"><div class="n">31</div><div class="fmt">Reel 60s</div><div class="use use-paid">PAID AD</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:9px;letter-spacing:2px;font-style:italic;opacity:.5">sensitive ones</p><p style="font-family:'Times New Roman',Georgia,serif;font-size:22px;margin-top:12px;line-height:1.2">The supplement industry<br>has a transparency<br>problem.</p><div style="width:30px;height:2px;background:rgba(255,255,255,.3);margin:12px auto"></div><p class="sub" style="color:rgba(255,255,255,.7)">Proprietary blends. Fairy dusting.<br>"Clinically studied" at 50mg.</p><p style="font-size:10px;font-weight:700;margin-top:4px">We built the opposite.</p><div class="play"></div></div><div class="info"><p class="t">"The supplement industry has a transparency problem."</p><p class="d">Manifesto video. Text-on-screen. Brand positioning.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 56 -->
-<div class="ad-card show" data-cat="vs">
-<div class="mockup m-white">
-<div class="num-badge">56</div>
-<div class="format-badge">Static</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-compare" style="margin-top:24px">
-<div class="m-compare-left">
-<p style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mg);font-weight:700">OURS</p>
-<p style="font-size:16px;font-weight:700;color:var(--bk);margin-top:8px">Verisol® Collagen Peptides</p>
-<p style="font-size:24px;font-weight:800;color:var(--mg);margin-top:4px">5,000mg</p>
-<p style="font-size:9px;color:#666;margin-top:4px">Specific peptide. Published.</p>
-</div>
-<div class="m-compare-right">
-<p style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#999;font-weight:700">THEIRS</p>
-<p style="font-size:16px;font-weight:700;color:#999;margin-top:8px">"Collagen Blend"</p>
-<p style="font-size:24px;font-weight:800;color:#ccc;margin-top:4px">5,000mg</p>
-<p style="font-size:9px;color:#bbb;margin-top:4px">8 ingredients inside. No individual amounts.</p>
-</div>
-</div>
-<p style="font-size:12px;color:var(--bk);margin-top:12px;font-weight:700">Same weight. Not the same thing.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"5,000mg Verisol® vs '5g collagen blend'"</p>
-<p class="ad-desc">Two labels side by side. Specific vs generic. Transparency vs opacity.</p>
-<div class="ad-meta"><span class="tag tag-format">Static comparison</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="both"><div class="mk bg-w"><div class="n">32</div><div class="fmt">Carousel 4</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Your collagen probably<br>isn't Verisol.</p><p class="sub">Generic collagen ≠ Verisol®.<br>Different peptide composition.<br>Different clinical backing.</p><p style="font-size:8px;color:var(--mg);font-weight:700">Verisol® by GELITA AG. It matters.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Your collagen probably isn't Verisol."</p><p class="d">Generic vs specific. Why the peptide type matters.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- ===== CATEGORY 9: SCIENCE / DOCTOR ===== -->
+<div class="ad show" data-cat="prob" data-use="paid"><div class="mk bg-c"><div class="n">33</div><div class="fmt">Carousel 5</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">What $69/month<br>actually gets you.</p><p class="sub">$2.46/day · 5,000mg Verisol<br>120mg HA · 200mg Vit C · +5 more<br>Dual-cap · Free shipping · Cancel anytime</p><div class="cta">Subscribe now</div><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"What $69/month actually gets you"</p><p class="d">Value breakdown. Direct conversion.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 86 -->
-<div class="ad-card show" data-cat="sci">
-<div class="mockup m-cream">
-<div class="num-badge">86</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-stat" style="margin-top:24px">20%</p>
-<p class="m-stat-label" style="color:var(--bk)">REDUCTION IN EYE WRINKLE VOLUME</p>
-<div class="m-divider" style="margin:16px auto"></div>
-<p style="font-size:11px;color:var(--bk);line-height:1.6">Proksch et al., 2014<br>RCT · n=114 · 8 weeks · 2.5g/day<br>Skin Support uses <strong style="color:var(--mg)">5,000mg</strong></p>
-<p style="font-size:9px;color:var(--mg);margin-top:8px">Published. Peer-reviewed.</p>
-<p style="font-size:8px;color:#999;margin-top:4px">PubMed 24401291</p>
-<p class="m-dshea" style="color:var(--bk)">*Study on Verisol® ingredient, not our finished product. Not evaluated by FDA.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"20% reduction in wrinkle volume. Published. Peer-reviewed."</p>
-<p class="ad-desc">Clinical data visualization. Proksch 2014 RCT. PubMed link in caption.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-dshea">DSHEA + ingredient caveat</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="social"><div class="mk bg-w"><div class="n">34</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:80px;margin:12px 0">[CERTIFICATE OF ANALYSIS]</div><p class="hl-sm">We tested our product.<br>Here's the COA.</p><p class="sub">Identity. Potency. Heavy metals. Microbial.<br>Every batch. Published.</p></div><div class="info"><p class="t">"We tested our product. Here's the COA."</p><p class="d">Show actual Certificate of Analysis. Ultimate trust signal.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Post-lab testing</span></div></div></div>
 
-<!-- AD 90 -->
-<div class="ad-card show" data-cat="sci">
-<div class="mockup m-pink">
-<div class="num-badge">90</div>
-<div class="format-badge">Reel 60s</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-photo-placeholder" style="width:120px;height:120px;border-radius:50%;margin:24px auto">[DR. PARK]</div>
-<p class="m-headline-sm" style="color:var(--bk)">"One belief about collagen<br>you hope people let go of"</p>
-<div class="m-divider" style="margin:12px auto"></div>
-<p style="font-size:10px;color:var(--bk)">Dr. Park Su Jung, MD<br>Board-Certified Dermatologist<br>22 SCIE Publications</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"One belief about collagen you hope people let go of"</p>
-<p class="ad-desc">Dr. Park's closing answer — designed for viral clip. Most quotable moment from Apr 29 interview.</p>
-<div class="ad-meta"><span class="tag tag-format">Reel 30-60s</span><span class="tag tag-source">Apr 29 Interview</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="social"><div class="mk bg-d"><div class="n">35</div><div class="fmt">Reel 60s</div><div class="use use-social">SOCIAL</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:9px;letter-spacing:2px;font-style:italic;opacity:.4">sensitive ones</p><p class="hl-sm" style="margin-top:16px">Why do supplements<br>cost $60+ when the<br>ingredients cost $2?</p><p class="sub" style="color:#888">Marketing. Packaging. Influencer fees.<br>We spent the money on the formula.</p><div class="play"></div></div><div class="info"><p class="t">"Why do supplements cost $60+?"</p><p class="d">Honest industry economics. Where the money really goes.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span></div></div></div>
 
-<!-- ===== CATEGORY 10: INDUSTRY TEA ===== -->
+<div class="ad show" data-cat="prob" data-use="both"><div class="mk bg-w"><div class="n">36</div><div class="fmt">Static 1:1</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-lg" style="margin-top:20px">Read the back<br>of the label.</p></div><div class="info"><p class="t">"Read the back of the label."</p><p class="d">Simple. Powerful. One instruction. Works as ad hook or social post.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span></div></div></div>
 
-<!-- AD 96 -->
-<div class="ad-card show" data-cat="tea">
-<div class="mockup m-mg">
-<div class="num-badge">96</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:24px;margin-top:24px;line-height:1.2">Industry Tea</p>
-<div style="width:60px;height:2px;background:rgba(255,255,255,.3);margin:16px auto"></div>
-<p style="font-size:48px;font-weight:800;opacity:.2;margin:12px 0">100</p>
-<p style="font-size:12px;opacity:.8">cards</p>
-<p style="font-size:48px;font-weight:800;opacity:.2;margin:12px 0">1,176</p>
-<p style="font-size:12px;opacity:.8">combinations</p>
-<p style="font-size:11px;margin-top:16px;opacity:.6">Every one is real.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"100 cards. 1,176 combinations. Every one is real."</p>
-<p class="ad-desc">Teaser for Industry Tea card game. Magenta brand energy.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Card photos</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="social"><div class="mk bg-c"><div class="n">37</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Celebrity ≠<br>clinically studied.</p><p class="sub">We chose published research<br>over paid endorsements.</p><p style="font-size:8px;color:var(--mg)">Our co-founder has 2.6M followers —<br>and he still wanted the science first.</p></div><div class="info"><p class="t">"Celebrity ≠ clinically studied"</p><p class="d">No names. Concept-level critique. "PubMed over TMZ."</p><div class="tags"><span class="tag t-fmt">Static 4:5</span></div></div></div>
 
-<!-- AD 97 -->
-<div class="ad-card show" data-cat="tea">
-<div class="mockup m-white">
-<div class="num-badge">97</div>
-<div class="format-badge">Reel 15-30s</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div style="background:var(--mg);border-radius:8px;padding:24px;margin:24px 16px;color:#fff">
-<p style="font-size:8px;letter-spacing:2px;text-transform:uppercase;opacity:.6">INDUSTRY TEA</p>
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:22px;margin-top:12px;line-height:1.3">"I added ___<br>because it's trending<br>right now."</p>
-</div>
-<p class="m-sub" style="color:var(--bk)">Fill in the blank with any ingredient<br>you've seen on TikTok this year.</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"'I added ___ because it's trending right now.'"</p>
-<p class="ad-desc">Single card reading. Fill-in-the-blank. "That's how most supplements are formulated."</p>
-<div class="ad-meta"><span class="tag tag-format">Reel 15-30s</span><span class="tag tag-source">Card readings</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="both"><div class="mk bg-w"><div class="n">38</div><div class="fmt">Carousel 3</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">What happens when<br>you take a supplement<br>with the wrong dose?</p><p class="sub">Probably nothing.<br>That's the problem.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Wrong dose = probably nothing"</p><p class="d">The right dose matters as much as the right ingredient.</p><div class="tags"><span class="tag t-fmt">Carousel 3</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- AD 100 -->
-<div class="ad-card show" data-cat="tea">
-<div class="mockup m-dark">
-<div class="num-badge">100</div>
-<div class="format-badge">Reel 2-4min</div>
-<div class="m-inner" style="text-align:center">
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:20px;color:var(--mg);margin-top:24px">Industry Tea</p>
-<p style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-top:8px">presents</p>
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:32px;margin-top:16px;color:#fff">The Lab</p>
-<div style="width:60px;height:2px;background:var(--mg);margin:16px auto"></div>
-<p style="font-size:11px;color:#888;line-height:1.7;margin-top:8px">A lab worker formulates a supplement<br>by marketing checklist.<br>The scale never moves past 0.01.</p>
-<p style="font-size:10px;color:var(--mg);margin-top:16px;font-weight:700">Short film · Deadpan satire</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"The Lab" — full cut</p>
-<p class="ad-desc">Full Industry Tea short film. Lab Worker + Marketing Team. Scale reads 0.01. She labels it anyway.</p>
-<div class="ad-meta"><span class="tag tag-format">Reel / YouTube 2-4min</span><span class="tag tag-source">Apr 17 Shoot</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="prob" data-use="social"><div class="mk bg-c"><div class="n">39</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="prod" style="margin-top:16px"></div><p class="hl-sm">This is not a review.<br>This is a label.</p><p class="sub">We don't need marketing to convince you.<br>We just need you to read the label.</p></div><div class="info"><p class="t">"This is not a review. This is a label."</p><p class="d">Product shot with Supplement Facts visible. Clean, confident.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15</span></div></div></div>
 
-<!-- ===== CATEGORY 11: CTA / LAUNCH ===== -->
+<div class="ad show" data-cat="prob" data-use="both"><div class="mk bg-p"><div class="n">40</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:16px">If "proprietary blend"<br>makes you suspicious,</p><p class="hl" style="color:var(--mg)">this was built<br>for you.</p></div><div class="info"><p class="t">"If 'proprietary blend' makes you suspicious..."</p><p class="d">Direct speak to Mina persona. Matches Klaviyo 2.3 energy.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span></div></div></div>
 
-<!-- AD 106 -->
-<div class="ad-card show" data-cat="cta">
-<div class="mockup m-cream">
-<div class="num-badge">106</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-product" style="margin:32px auto 24px"></div>
-<p class="m-headline-sm" style="color:var(--bk)">More coming soon.</p>
-<p class="m-headline-sm" style="color:var(--mg)">You're on the list.</p>
-<div class="m-cta" style="margin:20px auto 0">Join the waitlist</div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"More coming soon. You're on the list."</p>
-<p class="ad-desc">Waitlist CTA. Matches Klaviyo Email 1.1 closing. Link in bio → email capture.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15</span></div>
-</div>
-</div>
+<!-- ██ CAT 4: FOUNDER STORY (5) ██ -->
+<div class="ad show" data-cat="founder" data-use="social"><div class="mk bg-c"><div class="n">41</div><div class="fmt">Reel 60-90s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100px;height:100px;border-radius:50%;margin:12px auto">[ALEX ON SET]</div><p class="hl-sm">We didn't start this brand<br>to sell collagen.</p><div class="play"></div></div><div class="info"><p class="t">"We didn't start this brand to sell collagen."</p><p class="d">Alex on camera, unscripted. From BTS founder content.</p><div class="tags"><span class="tag t-fmt">Reel 60-90s</span><span class="tag t-src">Apr 15 BTS</span></div></div></div>
 
-<!-- AD 107 -->
-<div class="ad-card show" data-cat="cta">
-<div class="mockup m-white">
-<div class="num-badge">107</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<p class="m-headline" style="color:var(--bk);margin-top:24px">Skin Support</p>
-<p style="font-size:36px;font-weight:800;color:var(--mg);margin:8px 0">$69<span style="font-size:14px;color:#999">/month</span></p>
-<p style="font-size:11px;color:#999;text-decoration:line-through">$99 one-time</p>
-<div style="background:var(--cream);border-radius:8px;padding:16px;margin:20px 0;text-align:left">
-<p style="font-size:10px;color:var(--bk);line-height:2">✓ 8 ingredients, every dose published<br>✓ 5,000mg Verisol® collagen<br>✓ Free shipping every month<br>✓ Skip or cancel anytime</p>
-</div>
-<div class="m-cta" style="width:100%;text-align:center">Subscribe now</div>
-<p class="m-dshea" style="color:var(--bk)">*Not evaluated by FDA. Not intended to diagnose, treat, cure, or prevent any disease.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"Subscribe — $69/month"</p>
-<p class="ad-desc">Direct conversion post. Product + pricing + benefits. Clear CTA.</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="founder" data-use="social"><div class="mk bg-w"><div class="n">42</div><div class="fmt">Carousel 5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">We tried every collagen<br>on the market.</p><p class="sub">None of them told us<br>what was actually inside.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"We tried every collagen on the market."</p><p class="d">Personal story carousel. What we tried → what we found → what we built.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span></div></div></div>
 
-<!-- AD 110 -->
-<div class="ad-card show" data-cat="cta">
-<div class="mockup m-mg">
-<div class="num-badge">110</div>
-<div class="format-badge">Static + Reel</div>
-<div class="m-inner" style="text-align:center;justify-content:center">
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:10px;letter-spacing:2px;font-style:italic;opacity:.6">sensitive ones</p>
-<p style="font-family:'Times New Roman',Georgia,serif;font-size:42px;margin-top:24px;line-height:1.15">We're live.</p>
-<div style="width:40px;height:2px;background:rgba(255,255,255,.3);margin:20px auto"></div>
-<p style="font-size:12px;opacity:.7">Skin Support is here.</p>
-<p style="font-size:11px;margin-top:4px;opacity:.5">forsensitiveones.com</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"We're live."</p>
-<p class="ad-desc">Launch day post. Clean, simple, no gimmicks. The product speaks.</p>
-<div class="ad-meta"><span class="tag tag-format">Static + Reel</span><span class="tag tag-source">Launch Day</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="founder" data-use="social"><div class="mk bg-c"><div class="n">43</div><div class="fmt">Reel 60s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Behind the formula —<br>why 8 ingredients,<br>not 1.</p><p class="sub">Alex explaining the formulation.<br>"Collagen alone isn't enough."</p><div class="play"></div></div><div class="info"><p class="t">"Behind the formula — why 8, not 1"</p><p class="d">Educational founder content. Formulation philosophy.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span><span class="tag t-src">Apr 15</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<!-- ===== CATEGORY 4: FOUNDER ===== -->
+<div class="ad show" data-cat="founder" data-use="social"><div class="mk bg-w"><div class="n">44</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">3 founders. 1 product.<br>Every dose published.</p><p class="sub">Alex: brand strategy<br>Justin: operations<br>Daesung: content (2.6M+)</p></div><div class="info"><p class="t">"3 founders. 1 product."</p><p class="d">Team photo or BTS. Brief intro of each founder.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15</span></div></div></div>
 
-<div class="ad-card show" data-cat="founder">
-<div class="mockup m-cream">
-<div class="num-badge">41</div>
-<div class="format-badge">Reel 60-90s</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-photo-placeholder" style="width:140px;height:140px;border-radius:50%;margin:24px auto">[ALEX ON SET]</div>
-<p class="m-headline-sm" style="color:var(--bk)">We didn't start this brand<br>to sell collagen.</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"We didn't start this brand to sell collagen."</p>
-<p class="ad-desc">Alex on camera, unscripted. 60-90 seconds. From BTS founder content (X-02, X-05).</p>
-<div class="ad-meta"><span class="tag tag-format">Reel 60-90s</span><span class="tag tag-source">Apr 15 BTS</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="founder" data-use="social"><div class="mk bg-p"><div class="n">45</div><div class="fmt">Reel 30s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">The first time<br>I held the product.</p><p class="sub">Unscripted. Unedited.<br>Real reaction.</p><div class="play"></div></div><div class="info"><p class="t">"The first time I held the product"</p><p class="d">Alex's real reaction on set. X-01, X-02 from Miko's shot list. Do not stage.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span><span class="tag t-src">Apr 15 BTS</span></div></div></div>
 
-<!-- ===== CATEGORY 7: SOCIAL PROOF ===== -->
+<!-- ██ CAT 5: FORMAT SHOWCASE (10) ██ -->
+<div class="ad show" data-cat="format" data-use="both"><div class="mk bg-c"><div class="n">46</div><div class="fmt">Reel 30s</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:12px">Cap.<br>Tablets.<br>Shot.<br>Done.</p><div class="prod" style="margin:8px auto"></div><div class="play"></div></div><div class="info"><p class="t">"Cap. Tablets. Shot. Done."</p><p class="d">Hero ritual video. Twist → take → drink. Under 30 seconds.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span><span class="tag t-src">Apr 15 ASMR</span></div></div></div>
 
-<div class="ad-card show" data-cat="social">
-<div class="mockup m-pink">
-<div class="num-badge">66</div>
-<div class="format-badge">UGC Reel</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-photo-placeholder" style="width:100%;height:180px;border-radius:8px;margin:24px 0">[CREATOR OPENING BOX — FLIPPING TO SUPPLEMENT FACTS]</div>
-<p class="m-headline-sm" style="color:var(--bk)">She read the back<br>of the label first.</p>
-<div class="m-play"></div>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"She read the back of the label first."</p>
-<p class="ad-desc">UGC-style: creator opens box, immediately flips to Supplement Facts, reacts to full transparency.</p>
-<div class="ad-meta"><span class="tag tag-format">Reel UGC</span><span class="tag tag-source">Post-seeding</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="format" data-use="social"><div class="mk bg-d"><div class="n">47</div><div class="fmt">Reel 15s</div><div class="use use-social">SOCIAL</div><p style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#555">ASMR</p><div style="margin:16px auto;width:80px;height:80px;border-radius:50%;border:1px solid #333;display:flex;align-items:center;justify-content:center;gap:3px"><div style="width:5px;height:25px;background:var(--mg);border-radius:3px"></div><div style="width:5px;height:40px;background:var(--mg);border-radius:3px"></div><div style="width:5px;height:20px;background:var(--mg);border-radius:3px"></div></div><p style="font-size:9px;color:#666">cap twist · click · tablets · pour</p><p style="font-size:7px;color:#444;margin-top:4px">🔊 sound on</p><div class="play"></div></div><div class="info"><p class="t">ASMR cap click — no music</p><p class="d">Pure foley. Scroll-stopper. No text, no music.</p><div class="tags"><span class="tag t-fmt">Reel 15s</span><span class="tag t-src">Apr 15 ASMR</span></div></div></div>
 
-<!-- ===== CATEGORY 8: LIFESTYLE ===== -->
+<div class="ad show" data-cat="format" data-use="paid"><div class="mk bg-w"><div class="n">48</div><div class="fmt">Reel 30s</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><div class="comp" style="margin-top:16px"><div class="comp-r"><p style="font-size:9px;color:#999;line-height:1.5">Scoop · Water · Mix · Clean<br><strong>2 minutes</strong></p></div><div class="comp-l"><p style="font-size:9px;color:var(--mg);line-height:1.5;font-weight:700">Twist · Take · Drink<br><strong>30 seconds</strong></p></div></div><p class="hl-sm" style="margin-top:8px">One object. One ritual.</p><div class="play"></div></div><div class="info"><p class="t">"No water. No scoop. No blender."</p><p class="d">Split screen: powder mess vs SO simplicity.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span><span class="tag t-src">Apr 15</span></div></div></div>
 
-<div class="ad-card show" data-cat="life">
-<div class="mockup m-gradient">
-<div class="num-badge">76</div>
-<div class="format-badge">Static 4:5</div>
-<div class="m-inner" style="text-align:center">
-<div class="m-brand">sensitive ones</div>
-<div class="m-photo-placeholder" style="width:100%;height:180px;border-radius:8px;margin:24px 0">[PRODUCT ON BATHROOM SHELF BETWEEN SKINCARE]</div>
-<p class="m-headline-sm" style="color:var(--bk)">Between the serum<br>and the sunscreen.</p>
-<p class="m-dshea" style="color:var(--bk)">*Not evaluated by FDA.</p>
-</div>
-</div>
-<div class="ad-info">
-<p class="ad-title">"Between the serum and the sunscreen."</p>
-<p class="ad-desc">Product on bathroom counter between skincare. "The step your skincare routine was missing."</p>
-<div class="ad-meta"><span class="tag tag-format">Static 4:5</span><span class="tag tag-source">Apr 15 Lifestyle</span><span class="tag tag-dshea">DSHEA required</span></div>
-</div>
-</div>
+<div class="ad show" data-cat="format" data-use="both"><div class="mk bg-c"><div class="n">49</div><div class="fmt">Carousel 4</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Why liquid + tablets<br>in one unit?</p><p class="sub">Collagen absorbs best as liquid.<br>Vitamins are most stable as tablets.<br>One sealed unit. Best of both.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Why liquid + tablets in one unit?"</p><p class="d">Science of the dual-cap format. Bioavailability education.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-</div><!-- end grid -->
+<div class="ad show" data-cat="format" data-use="both"><div class="mk bg-p"><div class="n">50</div><div class="fmt">Reel 45s</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Your morning routine<br>+ 30 seconds.</p><p class="sub">Brush teeth. Skincare. Skin Support. Coffee.<br>The step your routine was missing.</p><div class="play"></div></div><div class="info"><p class="t">"Your morning routine + 30 seconds"</p><p class="d">Lifestyle montage. SO fits between steps. Natural integration.</p><div class="tags"><span class="tag t-fmt">Reel 45s</span><span class="tag t-src">Apr 15 Lifestyle</span><span class="tag t-dshea">DSHEA</span></div></div></div>
 
-<style>@keyframes pulse{0%{height:20px}100%{height:60px}}</style>
+<div class="ad show" data-cat="format" data-use="social"><div class="mk bg-w"><div class="n">51</div><div class="fmt">Reel 15s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="prod" style="width:70px;height:110px;margin-top:16px"></div><p class="sub">Slow motion.<br>Cap twisting open.<br>Beauty-editorial.</p><div class="play"></div></div><div class="info"><p class="t">Slow-mo cap twist</p><p class="d">Cinematic. Premium feel. Slow motion reveal of dual-cap.</p><div class="tags"><span class="tag t-fmt">Reel 15s</span><span class="tag t-src">Apr 15</span></div></div></div>
+
+<div class="ad show" data-cat="format" data-use="social"><div class="mk bg-c"><div class="n">52</div><div class="fmt">TikTok 15s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">What's inside<br>the cap?</p><p class="sub">Teaser → reveal.<br>Tablets on top, liquid underneath.<br>Surprise/delight.</p><div class="play"></div></div><div class="info"><p class="t">"What's inside the cap?"</p><p class="d">Teaser format for TikTok. Curiosity → reveal.</p><div class="tags"><span class="tag t-fmt">TikTok 15s</span><span class="tag t-src">Apr 15</span></div></div></div>
+
+<div class="ad show" data-cat="format" data-use="both"><div class="mk bg-w"><div class="n">53</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:100px;margin:12px 0">[PRODUCT IN BAG / TRAVEL CONTEXT]</div><p class="hl-sm">Takes up less space<br>than your lipstick.</p><p class="sub">Contains more collagen<br>than most supplements.</p></div><div class="info"><p class="t">Travel pack format</p><p class="d">Product in bag/purse/travel. Convenience + portability.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15 Lifestyle</span></div></div></div>
+
+<div class="ad show" data-cat="format" data-use="paid"><div class="mk bg-c"><div class="n">54</div><div class="fmt">Reel 30s</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">One object.<br>Under 30 seconds.</p><p class="sub">Timer overlay on ritual video.<br>Real-time countdown.</p><p style="font-size:14px;font-weight:800;color:var(--mg);margin:4px 0">0:28</p><div class="play"></div></div><div class="info"><p class="t">"One object. Under 30 seconds."</p><p class="d">Timer overlay proving it's actually under 30 seconds. Paid ad with CTA.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span><span class="tag t-src">Apr 15</span></div></div></div>
+
+<div class="ad show" data-cat="format" data-use="both"><div class="mk bg-w"><div class="n">55</div><div class="fmt">Static infographic</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">The dual-cap —<br>explained.</p><div style="display:flex;gap:8px;margin:8px auto;align-items:center"><div style="width:40px;height:20px;background:#ddd;border-radius:10px 10px 0 0;text-align:center;font-size:5px;padding-top:4px;color:#666">TABLETS</div><div style="font-size:8px;color:#999">→</div><div style="width:40px;height:45px;background:linear-gradient(180deg,var(--mg),#c0446e);border-radius:3px;text-align:center;font-size:5px;padding-top:15px;color:rgba(255,255,255,.6)">LIQUID</div></div><p class="sub">Liquid for absorption.<br>Tablets for stability.<br>One unit for convenience.</p></div><div class="info"><p class="t">"The dual-cap — explained"</p><p class="d">Cross-section diagram. Technical, clean, premium.</p><div class="tags"><span class="tag t-fmt">Infographic</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<!-- ██ CAT 6: US VS GENERIC (10) ██ -->
+<div class="ad show" data-cat="vs" data-use="paid"><div class="mk bg-w"><div class="n">56</div><div class="fmt">Static</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><div class="comp" style="margin-top:12px"><div class="comp-l"><p style="font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--mg);font-weight:700">OURS</p><p style="font-size:12px;font-weight:700;margin-top:4px">Verisol®</p><p style="font-size:20px;font-weight:800;color:var(--mg)">5,000mg</p><p style="font-size:7px;color:#666">Published</p></div><div class="comp-r"><p style="font-size:7px;letter-spacing:1px;text-transform:uppercase;color:#999;font-weight:700">THEIRS</p><p style="font-size:12px;font-weight:700;color:#999;margin-top:4px">"Collagen Blend"</p><p style="font-size:20px;font-weight:800;color:#ccc">5,000mg</p><p style="font-size:7px;color:#bbb">8 ingredients, no amounts</p></div></div><p style="font-size:10px;font-weight:700;margin-top:4px">Same weight. Not the same thing.</p></div><div class="info"><p class="t">"5,000mg Verisol® vs '5g collagen blend'"</p><p class="d">Specific vs generic. Transparency vs opacity.</p><div class="tags"><span class="tag t-fmt">Static</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="both"><div class="mk bg-c"><div class="n">57</div><div class="fmt">Static 1:1</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="comp" style="margin-top:16px"><div class="comp-l"><p style="font-size:8px;font-weight:700;color:var(--mg)">PUBLISHED</p><p style="font-size:7px;line-height:1.6;margin-top:4px">5,000mg · 120mg · 200mg<br>30mg · 6mg · 2mg · 5mg · 100mg</p></div><div class="comp-r"><p style="font-size:8px;font-weight:700;color:#999">PROPRIETARY</p><p style="font-size:7px;line-height:1.6;color:#bbb;margin-top:4px">Proprietary Blend<br>500mg (8 ingredients)</p></div></div><p class="sub">Same number of ingredients.<br>Radically different transparency.</p></div><div class="info"><p class="t">"Published vs proprietary"</p><p class="d">Clean split. 8 published doses vs "500mg blend." Devastating comparison.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="both"><div class="mk bg-w"><div class="n">58</div><div class="fmt">Carousel 3</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">What you know<br>vs what you don't.</p><div class="comp"><div class="comp-l"><p style="font-size:9px;font-weight:700;color:var(--mg)">SO: Exactly what you're getting</p></div><div class="comp-r"><p style="font-size:9px;color:#999">Generic: The total weight. That's it.</p></div></div><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"What you know vs what you don't"</p><p class="d">Simple comparison. Let the reader draw conclusions.</p><div class="tags"><span class="tag t-fmt">Carousel 3</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="paid"><div class="mk bg-c"><div class="n">59</div><div class="fmt">Carousel 4</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Powder vs dual-cap.</p><div class="comp"><div class="comp-r"><p style="font-size:8px;color:#999">Scoop · Water · Mix · Taste · Cleanup</p></div><div class="comp-l"><p style="font-size:8px;color:var(--mg);font-weight:700">Twist · Take · Drink · Done</p></div></div><p class="sub">Same nutrition. Different experience.</p><div class="cta">Try Skin Support</div><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Powder vs dual-cap"</p><p class="d">Format convenience comparison. Same nutrition, better experience.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="both"><div class="mk bg-w"><div class="n">60</div><div class="fmt">Carousel 5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Generic collagen<br>vs Verisol®.</p><p class="sub">Generic: unspecified source, unspecified composition, no clinical data.<br>Verisol: GELITA AG Germany, specific peptide, 4+ published RCTs.</p><p style="font-size:8px;color:var(--mg);font-weight:700;margin-top:4px">The name on the ingredient matters.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Generic collagen vs Verisol®"</p><p class="d">Why specific branded ingredient > generic. Clinical backing difference.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="social"><div class="mk bg-c"><div class="n">61</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Celebrity endorsement<br>vs published research.</p><p class="sub">We chose PubMed over TMZ.</p></div><div class="info"><p class="t">"Celebrity endorsement vs published research"</p><p class="d">No names. Concept critique. "We chose PubMed over TMZ."</p><div class="tags"><span class="tag t-fmt">Static 4:5</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="both"><div class="mk bg-w"><div class="n">62</div><div class="fmt">Carousel 4</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">1 ingredient vs 8.</p><p class="sub">Collagen alone isn't enough.<br>Your body needs cofactors, antioxidants,<br>barrier support, hydration.</p><p style="font-size:8px;color:var(--mg);font-weight:700">That's why Skin Support has 8.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"1 ingredient vs 8"</p><p class="d">Complete stack > single ingredient. Cofactor argument.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="paid"><div class="mk bg-c"><div class="n">63</div><div class="fmt">Carousel 5</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">$27/month vs $69/month.</p><p class="sub">Yes, we cost more. Here's why:</p><p style="font-size:8px;line-height:1.8;text-align:left;margin-top:4px">✓ 5,000mg Verisol® (not 2g generic)<br>✓ 8 actives (not just collagen)<br>✓ Every dose published<br>✓ Dual-cap format</p><div class="cta">Worth every dollar</div><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"$27 vs $69 — here's why"</p><p class="d">Unapologetic premium positioning. Worth-it argument.</p><div class="tags"><span class="tag t-fmt">Carousel 5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="social"><div class="mk bg-w"><div class="n">64</div><div class="fmt">Static 1:1</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:16px">One product.<br>Not 47.</p><p class="sub">We put everything into making<br>one product the best it can be.</p></div><div class="info"><p class="t">"One product. Not 47."</p><p class="d">Focus vs fragmentation. Quality vs quantity.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span></div></div></div>
+
+<div class="ad show" data-cat="vs" data-use="social"><div class="mk bg-p"><div class="n">65</div><div class="fmt">Reel 30s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">The ingredient that<br>matters most isn't<br>on the label.</p><div style="width:30px;height:2px;background:var(--mg);margin:8px auto"></div><p style="font-size:10px;color:var(--mg);font-weight:700">It's trust.</p><div class="play"></div></div><div class="info"><p class="t">"The ingredient that matters most..."</p><p class="d">Pause. Then: "It's trust." Brand manifesto energy.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span></div></div></div>
+
+<!-- ██ CAT 7: SOCIAL PROOF / UGC (10) ██ -->
+<div class="ad show" data-cat="proof" data-use="both"><div class="mk bg-p"><div class="n">66</div><div class="fmt">UGC Reel</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:120px;margin:12px 0">[CREATOR FLIPPING TO SUPPLEMENT FACTS]</div><p class="hl-sm">She read the back<br>of the label first.</p><div class="play"></div></div><div class="info"><p class="t">"She read the back of the label first."</p><p class="d">UGC: creator opens box, flips to label, reacts to transparency.</p><div class="tags"><span class="tag t-fmt">UGC Reel</span><span class="tag t-src">Post-seeding</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="both"><div class="mk bg-c"><div class="n">67</div><div class="fmt">Reel 30-60s</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:80px;height:80px;border-radius:50%;margin:8px auto">[DR. PARK]</div><p class="hl-sm">22 published papers.<br>One recommendation.</p><p class="sub">Dr. Park Su Jung, MD<br>Board-Certified Dermatologist</p><div class="play"></div></div><div class="info"><p class="t">"22 papers. One recommendation."</p><p class="d">Doctor interview clip. Education NOT endorsement.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span><span class="tag t-src">Apr 29</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="social"><div class="mk bg-w"><div class="n">68</div><div class="fmt">UGC Reel</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:120px;margin:12px 0">[UNBOXING — MAGENTA BOX]</div><p class="hl-sm">"Wait, the tablets are<br>ON the cap?"</p><div class="play"></div></div><div class="info"><p class="t">Unboxing — first reaction</p><p class="d">Creator unboxing. Dual-cap surprise moment.</p><div class="tags"><span class="tag t-fmt">UGC Reel</span><span class="tag t-src">Post-seeding</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="social"><div class="mk bg-c"><div class="n">69</div><div class="fmt">TikTok UGC</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">"I've never seen a<br>supplement like this."</p><p class="sub">Twist-open moment captured.<br>First taste of pineapple.</p><div class="play"></div></div><div class="info"><p class="t">"I've never seen a supplement like this"</p><p class="d">Creator reaction to dual-cap. Real, unscripted.</p><div class="tags"><span class="tag t-fmt">TikTok UGC</span><span class="tag t-src">Post-seeding</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="both"><div class="mk bg-w"><div class="n">70</div><div class="fmt">Quote cards</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:80px;height:80px;border-radius:50%;margin:8px auto">[DR. PARK PORTRAIT]</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:14px;font-style:italic;margin:8px 0;line-height:1.4">"[Quote from interview]"</p><p style="font-size:8px;color:var(--mg)">Dr. Park Su Jung, MD · 22 SCIE publications</p></div><div class="info"><p class="t">Board-certified derm quote card</p><p class="d">Dr. Park quote graphic. NOT a spokesperson — a scientist.</p><div class="tags"><span class="tag t-fmt">Quote cards</span><span class="tag t-src">Apr 29</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="social"><div class="mk bg-c"><div class="n">71</div><div class="fmt">Carousel 3</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Week 1 / Week 4 / Week 8</p><p class="sub">Sharing my experience.<br>Not a before/after claim.<br>A personal diary.</p><p style="font-size:7px;color:#999;font-style:italic">Results may vary.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Week 1 / Week 4 / Week 8"</p><p class="d">Creator documenting journey. NOT a before/after claim. "Results may vary" required.</p><div class="tags"><span class="tag t-fmt">Carousel 3</span><span class="tag t-src">Post-launch 8+ wks</span><span class="tag t-dshea">DSHEA + "Results vary"</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="both"><div class="mk bg-w"><div class="n">72</div><div class="fmt">Static 1:1</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:80px;margin:12px 0">[COA DOCUMENT EXCERPT]</div><p class="hl-sm">Verified by [Lab Name].</p><p class="sub">Identity. Potency. Heavy metals. Microbial.<br>Every batch. Third-party.</p></div><div class="info"><p class="t">"Verified by [Lab Name]"</p><p class="d">COA image/excerpt. Trust signal. Post-lab testing.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span><span class="tag t-src">Post-lab testing</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="paid"><div class="mk bg-c"><div class="n">73</div><div class="fmt">Reel 45s</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">First reactions.<br>Compilation.</p><p class="sub">3-5 creator clips stitched:<br>Open → Read label → Try → React.</p><div class="play"></div></div><div class="info"><p class="t">Compilation: first reactions</p><p class="d">Rapid cuts. Multiple creators. Social proof through volume. Paid ad with CTA.</p><div class="tags"><span class="tag t-fmt">Reel 45s</span><span class="tag t-src">Post-seeding</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="both"><div class="mk bg-w"><div class="n">74</div><div class="fmt">Static 1:1</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div style="display:flex;gap:16px;margin:16px auto;justify-content:center"><div style="text-align:center"><div style="width:40px;height:40px;border-radius:50%;background:var(--cream);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:14px">🏭</div><p style="font-size:7px;font-weight:700">GMP</p></div><div style="text-align:center"><div style="width:40px;height:40px;border-radius:50%;background:var(--cream);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:14px">🔬</div><p style="font-size:7px;font-weight:700">TESTED</p></div><div style="text-align:center"><div style="width:40px;height:40px;border-radius:50%;background:var(--cream);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:14px">📋</div><p style="font-size:7px;font-weight:700">PUBLISHED</p></div></div><p class="sub">GMP Manufactured.<br>Third-party tested.<br>Every dose published.</p></div><div class="info"><p class="t">Trust badges — triple guarantee</p><p class="d">Three badges/icons. Institutional credibility.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span></div></div></div>
+
+<div class="ad show" data-cat="proof" data-use="both"><div class="mk bg-p"><div class="n">75</div><div class="fmt">Reel 60-90s</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:80px;height:80px;border-radius:50%;margin:8px auto">[DR. PARK]</div><p class="hl-sm">What a dermatologist<br>actually thinks about<br>collagen supplements.</p><div class="play"></div></div><div class="info"><p class="t">"What a derm actually thinks about collagen"</p><p class="d">Dr. Park's closing answer. Designed for viral. Most quotable moment.</p><div class="tags"><span class="tag t-fmt">Reel 60-90s</span><span class="tag t-src">Apr 29</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<!-- ██ CAT 8: LIFESTYLE (10) ██ -->
+<div class="ad show" data-cat="life" data-use="both"><div class="mk bg-g"><div class="n">76</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:100px;margin:12px 0">[BATHROOM SHELF WITH SKINCARE]</div><p class="hl-sm">Between the serum<br>and the sunscreen.</p><p class="ds">*Not evaluated by FDA.</p></div><div class="info"><p class="t">"Between the serum and the sunscreen."</p><p class="d">Product among skincare. Implied benefit.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15 Lifestyle</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="social"><div class="mk bg-p"><div class="n">77</div><div class="fmt">Reel 60s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">GRWM +<br>Skin Support.</p><p class="sub">Skincare → Skin Support → Makeup → Out.<br>Natural integration, not a demo.</p><div class="play"></div></div><div class="info"><p class="t">Morning routine GRWM + Skin Support</p><p class="d">Get Ready With Me. 30-second insert of SO ritual.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span><span class="tag t-src">Apr 15 or post-shoot</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="social"><div class="mk bg-w"><div class="n">78</div><div class="fmt">Static 1:1</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:120px;margin:12px 0">[FLAT LAY: BAG CONTENTS + PRODUCT]</div><p class="hl-sm">What's in my bag.</p></div><div class="info"><p class="t">"What's in my bag"</p><p class="d">Flat lay: wallet, phone, keys, lip balm, Skin Support. Everyday carry.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span><span class="tag t-src">Apr 15 Lifestyle</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="social"><div class="mk bg-c"><div class="n">79</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:100px;margin:12px 0">[DESK: COFFEE + LAPTOP + PRODUCT]</div><p class="hl-sm">My 10am ritual.</p><p class="sub">Under 30 seconds. Back to work.</p></div><div class="info"><p class="t">"Desk ritual"</p><p class="d">Work desk context. Coffee, laptop, Skin Support.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15 Lifestyle</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="both"><div class="mk bg-w"><div class="n">80</div><div class="fmt">Carousel 3</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">The step your<br>dermatologist can't see.</p><p class="sub">Skincare works from outside.<br>Skin Support works from inside.<br>Both matter.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div><p class="ds">*Not evaluated by FDA.</p></div><div class="info"><p class="t">"The step your derm can't see"</p><p class="d">Topical + internal. "Both matter."</p><div class="tags"><span class="tag t-fmt">Carousel 3</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="social"><div class="mk bg-p"><div class="n">81</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:120px;margin:12px 0">[KITCHEN: MORNING LIGHT + COFFEE + PRODUCT]</div><p class="sub">Morning light. Coffee steam. Skin Support.</p></div><div class="info"><p class="t">Kitchen counter — morning light</p><p class="d">Aspirational but achievable lifestyle. Warm, soft.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15 Lifestyle</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="social"><div class="mk bg-c"><div class="n">82</div><div class="fmt">Reel 30s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Sunday reset.</p><p class="sub">Face mask. Candles. Skin Support. Journal.<br>Weekend ritual energy.</p><div class="play"></div></div><div class="info"><p class="t">"Sunday reset"</p><p class="d">Self-care day context. Soft, warm, intentional.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span><span class="tag t-src">Post-shoot</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="social"><div class="mk bg-w"><div class="n">83</div><div class="fmt">Reel 30s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Night routine —<br>but the morning version.</p><p class="sub">You do 7 steps at night.<br>Do 1 step in the morning.</p><div class="play"></div></div><div class="info"><p class="t">"Night routine — but the morning version"</p><p class="d">Flip the script on PM skincare. SO = one AM step.</p><div class="tags"><span class="tag t-fmt">Reel 30s</span><span class="tag t-src">Post-shoot</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="social"><div class="mk bg-c"><div class="n">84</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:100px;margin:12px 0">[TRAVEL: HOTEL BATHROOM / AIRPLANE]</div><p class="hl-sm">No powder mess.<br>No shaker bottle.</p><p class="sub">Just twist, take, drink.</p></div><div class="info"><p class="t">Travel context</p><p class="d">Hotel/airplane. Convenience for real life.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Post-shoot</span></div></div></div>
+
+<div class="ad show" data-cat="life" data-use="paid"><div class="mk bg-w"><div class="n">85</div><div class="fmt">Carousel 4</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">$2.46/day.</p><div style="font-size:9px;line-height:2;text-align:left;margin:8px 0"><p>☕ Coffee: $5-7/day</p><p>🥤 Green juice: $12/day</p><p>💆 Facial: $150/month</p><p style="color:var(--mg);font-weight:700">💊 Skin Support: $2.46/day</p></div><div class="cta">Subscribe — $69/mo</div><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"$2.46/day" with daily comparisons</p><p class="d">Price anchor vs coffee, juice, facials. Direct conversion.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span></div></div></div>
+
+<!-- ██ CAT 9: SCIENCE / DOCTOR (10) ██ -->
+<div class="ad show" data-cat="sci" data-use="both"><div class="mk bg-c"><div class="n">86</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="st" style="margin-top:12px">20%</p><p class="stl">REDUCTION IN WRINKLE VOLUME</p><div style="width:30px;height:2px;background:var(--mg);margin:8px auto"></div><p style="font-size:9px;line-height:1.5">Proksch et al., 2014 · RCT · n=114<br>Skin Support uses <strong style="color:var(--mg)">5,000mg</strong></p><p style="font-size:7px;color:var(--mg);margin-top:4px">PubMed 24401291</p><p class="ds">*Study on ingredient, not our product.</p></div><div class="info"><p class="t">"20% reduction. Published. Peer-reviewed."</p><p class="d">Clinical data visualization. Proksch 2014 RCT.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-dshea">DSHEA + caveat</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="both"><div class="mk bg-w"><div class="n">87</div><div class="fmt">Carousel 3</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="st" style="margin-top:12px">65%</p><p class="stl">INCREASE IN PROCOLLAGEN TYPE I</p><p class="sub">The precursor your body uses<br>to build new collagen.<br>"65% more raw material for your skin."</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div><p class="ds">*Study on ingredient.</p></div><div class="info"><p class="t">"65% increase in procollagen type I"</p><p class="d">What is procollagen? Precursor to new collagen. Same Proksch study.</p><div class="tags"><span class="tag t-fmt">Carousel 3</span><span class="tag t-dshea">DSHEA + caveat</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="social"><div class="mk bg-c"><div class="n">88</div><div class="fmt">Reel 60s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:80px;height:80px;border-radius:50%;margin:8px auto">[DR. PARK]</div><p class="hl-sm">"What is collagen?"</p><p class="sub">Dr. Park answering core Q1.<br>"When people hear collagen,<br>they think of skin. But..."</p><div class="play"></div></div><div class="info"><p class="t">"What is collagen?" — Dr. Park</p><p class="d">Doctor interview clip Q1. Educational. Longform cut.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span><span class="tag t-src">Apr 29</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="social"><div class="mk bg-w"><div class="n">89</div><div class="fmt">Reel 60s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:80px;height:80px;border-radius:50%;margin:8px auto">[DR. PARK]</div><p class="hl-sm">Taking collagen vs<br>supporting collagen<br>production.</p><p class="sub">"Most people think you eat collagen<br>and it goes to your skin. That's not how it works."</p><div class="play"></div></div><div class="info"><p class="t">"Taking vs supporting collagen production"</p><p class="d">Dr. Park Q6. Synthesis pathway education.</p><div class="tags"><span class="tag t-fmt">Reel 60s</span><span class="tag t-src">Apr 29</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="both"><div class="mk bg-p"><div class="n">90</div><div class="fmt">Reel 30-60s</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:80px;height:80px;border-radius:50%;margin:8px auto">[DR. PARK]</div><p class="hl-sm">"One belief about collagen<br>you hope people let go of."</p><p class="sub">Dr. Park Su Jung, MD<br>22 SCIE Publications</p><div class="play"></div></div><div class="info"><p class="t">"One belief about collagen you hope people let go of"</p><p class="d">Closing answer. Designed for viral. Most quotable moment.</p><div class="tags"><span class="tag t-fmt">Reel 30-60s</span><span class="tag t-src">Apr 29</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="both"><div class="mk bg-c"><div class="n">91</div><div class="fmt">Carousel 6</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:12px">4 published studies.<br>Here's what they found.</p><p style="font-size:8px;line-height:2;text-align:left;margin:8px 0">1. Wrinkles: <strong style="color:var(--mg)">-20%</strong> volume<br>2. Elasticity: <strong style="color:var(--mg)">significant ↑</strong><br>3. Cellulite: <strong style="color:var(--mg)">reduced</strong><br>4. Nails: <strong style="color:var(--mg)">+12%</strong> growth</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"4 studies. Here's what they found."</p><p class="d">1 slide per study. All with PubMed IDs.</p><div class="tags"><span class="tag t-fmt">Carousel 6</span><span class="tag t-dshea">DSHEA + caveat</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="social"><div class="mk bg-w"><div class="n">92</div><div class="fmt">Carousel 4</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">RCT. Double-blind.<br>Placebo-controlled.</p><p class="sub">What do these words mean?</p><p style="font-size:8px;line-height:1.8;text-align:left;margin:4px 0"><strong>RCT:</strong> Random groups<br><strong>Double-blind:</strong> Nobody knew who got what<br><strong>Placebo:</strong> Sugar pill comparison</p><p style="font-size:8px;color:var(--mg)">This is the gold standard.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"RCT. Double-blind. Placebo-controlled."</p><p class="d">Science literacy. What these terms actually mean.</p><div class="tags"><span class="tag t-fmt">Carousel 4</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="social"><div class="mk bg-c"><div class="n">93</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div style="background:#fff;border:1px solid #eee;border-radius:6px;padding:8px;margin:12px 0;text-align:left"><p style="font-size:7px;color:var(--mg);font-weight:700;letter-spacing:1px;margin-bottom:4px">PUBMED.NCBI.NLM.NIH.GOV</p><p style="font-size:9px;font-weight:700;color:var(--bk)">Oral supplementation with specific bioactive collagen peptides...</p><p style="font-size:7px;color:#999;margin-top:2px">Proksch E, et al. Skin Pharmacol Physiol. 2014.</p></div><p class="hl-sm">This is the study.<br>You can read it yourself.</p></div><div class="info"><p class="t">"PubMed 24401291"</p><p class="d">Screenshot of actual PubMed page. Radical transparency — show the source.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="social"><div class="mk bg-w"><div class="n">94</div><div class="fmt">Carousel 3</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Why we say<br>"clinically studied"<br>and not "clinically proven."</p><p class="sub">The ingredient was studied.<br>Our product wasn't.<br>There's a legal and ethical difference.<br>We don't blur that line.</p><div class="dots"><div class="dot a"></div><div class="dot"></div><div class="dot"></div></div></div><div class="info"><p class="t">"Studied vs proven — we don't blur that line"</p><p class="d">Honest, trust-building. Shows integrity.</p><div class="tags"><span class="tag t-fmt">Carousel 3</span></div></div></div>
+
+<div class="ad show" data-cat="sci" data-use="both"><div class="mk bg-c"><div class="n">95</div><div class="fmt">Quote graphic</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="ph" style="width:80px;height:80px;border-radius:50%;margin:8px auto">[DR. PARK PORTRAIT]</div><p style="font-size:8px;color:var(--mg);font-weight:700;margin-top:6px">Dr. Park Su Jung, MD</p><p style="font-size:7px;color:#999">The Garden Dermatology Clinic · Gangnam, Seoul<br>22 SCIE publications · Board-Certified</p><p class="sub" style="margin-top:6px">Not a spokesperson. A scientist.</p></div><div class="info"><p class="t">"Dr. Park Su Jung — 22 SCIE publications"</p><p class="d">Doctor credentials card. Link to full interview.</p><div class="tags"><span class="tag t-fmt">Quote graphic</span><span class="tag t-src">Apr 29 + portrait</span></div></div></div>
+
+<!-- ██ CAT 10: INDUSTRY TEA (10) ██ -->
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-m"><div class="n">96</div><div class="fmt">Static 4:5</div><div class="use use-social">SOCIAL</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:20px;margin-top:12px">Industry Tea</p><div style="width:40px;height:2px;background:rgba(255,255,255,.3);margin:10px auto"></div><p style="font-size:36px;font-weight:800;opacity:.2;margin:4px 0">100</p><p style="font-size:10px;opacity:.7">cards</p><p style="font-size:36px;font-weight:800;opacity:.2;margin:4px 0">1,176</p><p style="font-size:10px;opacity:.7">combinations</p><p style="font-size:9px;margin-top:8px;opacity:.5">Every one is real.</p></div><div class="info"><p class="t">"100 cards. 1,176 combinations."</p><p class="d">Teaser for Industry Tea. Magenta brand energy.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Card photos</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-w"><div class="n">97</div><div class="fmt">Reel 15-30s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div style="background:var(--mg);border-radius:6px;padding:16px;margin:12px 8px;color:#fff"><p style="font-size:6px;letter-spacing:1.5px;text-transform:uppercase;opacity:.5">INDUSTRY TEA</p><p style="font-family:'Times New Roman',Georgia,serif;font-size:16px;margin-top:6px;line-height:1.3">"I added ___<br>because it's trending<br>right now."</p></div><p class="sub">Fill in the blank with any ingredient<br>you've seen on TikTok this year.</p><div class="play"></div></div><div class="info"><p class="t">"'I added ___ because it's trending.'"</p><p class="d">Single card reading. Fill-in-the-blank format.</p><div class="tags"><span class="tag t-fmt">Reel 15-30s</span><span class="tag t-src">Card readings</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-c"><div class="n">98</div><div class="fmt">Reel 30-60s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div class="ph" style="width:100%;height:120px;margin:12px 0">[DAESUNG DRAWING CARDS — DEADPAN]</div><p class="hl-sm">Card reading #1.</p><p class="sub">Daesung draws two cards.<br>Reads the combination.<br>Deadpan delivery.</p><div class="play"></div></div><div class="info"><p class="t">Daesung deadpan card reading</p><p class="d">3-5 combos per video. Humor is in the truth of the combination.</p><div class="tags"><span class="tag t-fmt">Reel 30-60s</span><span class="tag t-src">Card readings</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-d"><div class="n">99</div><div class="fmt">Reel 15-30s</div><div class="use use-social">SOCIAL</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:16px;color:var(--mg);margin-top:12px">Industry Tea</p><p style="font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:#555;margin-top:4px">presents</p><p style="font-family:'Times New Roman',Georgia,serif;font-size:24px;margin-top:8px;color:#fff">The Lab</p><p class="sub" style="color:#888">15-30 second trailer.<br>The scale reads 0.01.<br>She labels it anyway.</p><div class="play"></div></div><div class="info"><p class="t">"The Lab" trailer</p><p class="d">Teaser cut from Apr 17 shoot. Tease the full film.</p><div class="tags"><span class="tag t-fmt">Reel 15-30s</span><span class="tag t-src">Apr 17</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-d"><div class="n">100</div><div class="fmt">Reel 2-4min</div><div class="use use-social">SOCIAL</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:16px;color:var(--mg)">Industry Tea</p><p style="font-family:'Times New Roman',Georgia,serif;font-size:28px;margin-top:8px;color:#fff">The Lab</p><div style="width:40px;height:2px;background:var(--mg);margin:10px auto"></div><p class="sub" style="color:#888">A lab worker formulates a supplement<br>by marketing checklist.<br>The scale never moves past 0.01.</p><p style="font-size:8px;color:var(--mg);font-weight:700">Short film · Deadpan satire</p><div class="play"></div></div><div class="info"><p class="t">"The Lab" — full cut</p><p class="d">Full Industry Tea film. Lab Worker + Marketing Team. 28 scenes.</p><div class="tags"><span class="tag t-fmt">Reel / YouTube 2-4min</span><span class="tag t-src">Apr 17 Shoot</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-w"><div class="n">101</div><div class="fmt">Reel 15s (weekly)</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div style="display:flex;gap:6px;margin:12px auto;justify-content:center"><div style="width:50px;height:70px;background:var(--mg);border-radius:4px"></div><div style="width:50px;height:70px;background:#fff;border:1px solid #ddd;border-radius:4px"></div></div><p class="hl-sm">Card combo<br>of the week.</p><p class="sub">Recurring format.<br>Every week, a new combo.</p><div class="play"></div></div><div class="info"><p class="t">Card combo of the week</p><p class="d">Weekly recurring: Daesung draws 2 cards. Builds habit and audience.</p><div class="tags"><span class="tag t-fmt">Reel 15s (weekly)</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-c"><div class="n">102</div><div class="fmt">Story poll</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div style="background:var(--mg);border-radius:6px;padding:12px;margin:12px 8px;color:#fff;text-align:center"><p style="font-size:6px;letter-spacing:1px;text-transform:uppercase;opacity:.5">INDUSTRY TEA</p><p style="font-family:'Times New Roman',Georgia,serif;font-size:14px;margin-top:4px">"I added ___<br>because ___."</p></div><p class="hl-sm">Guess the<br>white card.</p><p class="sub">Comment your answer. →</p></div><div class="info"><p class="t">"Play along" — interactive card prompt</p><p class="d">Engagement-first. Show magenta card, audience guesses the white card.</p><div class="tags"><span class="tag t-fmt">Story poll / Reel</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-p"><div class="n">103</div><div class="fmt">Reel 30-60s</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p class="hl-sm" style="margin-top:16px">Industry Tea —<br>behind the scenes.</p><p class="sub">Design process. Printing. Testing combos.<br>"We made a game to expose an industry."</p><div class="play"></div></div><div class="info"><p class="t">Industry Tea — BTS</p><p class="d">BTS of card creation: design, printing, Alex + Daesung testing.</p><div class="tags"><span class="tag t-fmt">Reel 30-60s</span><span class="tag t-src">BTS footage</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-m"><div class="n">104</div><div class="fmt">Static end card</div><div class="use use-social">SOCIAL</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:20px;margin-top:24px">Industry Tea</p><div style="width:40px;height:2px;background:rgba(255,255,255,.3);margin:12px auto"></div><p style="font-size:9px;opacity:.5;margin-top:4px">sensitive ones</p></div><div class="info"><p class="t">"That's how most supplements are made."</p><p class="d">End card for all Industry Tea content. Magenta full-bleed. Brand closer.</p><div class="tags"><span class="tag t-fmt">End card</span></div></div></div>
+
+<div class="ad show" data-cat="tea" data-use="social"><div class="mk bg-w"><div class="n">105</div><div class="fmt">Static 1:1</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><div style="display:flex;gap:4px;margin:12px auto;justify-content:center;flex-wrap:wrap"><div style="width:35px;height:50px;background:var(--mg);border-radius:3px"></div><div style="width:35px;height:50px;background:var(--mg);border-radius:3px;opacity:.8"></div><div style="width:35px;height:50px;background:#fff;border:1px solid #ddd;border-radius:3px"></div><div style="width:35px;height:50px;background:#fff;border:1px solid #ddd;border-radius:3px;opacity:.8"></div></div><p class="hl-sm">Want to play?</p><p class="sub">100 physical cards. Coming soon.</p></div><div class="info"><p class="t">"Want to play?"</p><p class="d">CTA for Industry Tea deck itself. Future merch potential.</p><div class="tags"><span class="tag t-fmt">Static 1:1</span></div></div></div>
+
+<!-- ██ CAT 11: CTA / LAUNCH (5) ██ -->
+<div class="ad show" data-cat="cta" data-use="both"><div class="mk bg-c"><div class="n">106</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="prod" style="margin-top:16px"></div><p class="hl-sm">More coming soon.</p><p class="hl-sm" style="color:var(--mg)">You're on the list.</p><div class="cta">Join the waitlist</div></div><div class="info"><p class="t">"More coming soon. You're on the list."</p><p class="d">Waitlist CTA. Matches Klaviyo Email 1.1 closing.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-src">Apr 15</span></div></div></div>
+
+<div class="ad show" data-cat="cta" data-use="paid"><div class="mk bg-w"><div class="n">107</div><div class="fmt">Static 4:5</div><div class="use use-paid">PAID AD</div><div class="brand">sensitive ones</div><p class="hl" style="margin-top:8px">Skin Support</p><p style="font-size:28px;font-weight:800;color:var(--mg)">$69<span style="font-size:12px;color:#999">/month</span></p><p style="font-size:9px;color:#999;text-decoration:line-through">$99</p><div style="font-size:8px;line-height:1.8;text-align:left;margin:8px 0"><p>✓ 8 ingredients, every dose published</p><p>✓ 5,000mg Verisol® collagen</p><p>✓ Free shipping · Cancel anytime</p></div><div class="cta" style="width:100%;text-align:center">Subscribe now</div><p class="ds">*Not evaluated by FDA.</p></div><div class="info"><p class="t">"Subscribe — $69/month"</p><p class="d">Direct conversion. Product + pricing + benefits. Clear CTA.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span><span class="tag t-dshea">DSHEA</span></div></div></div>
+
+<div class="ad show" data-cat="cta" data-use="both"><div class="mk bg-p"><div class="n">108</div><div class="fmt">Static 4:5</div><div class="use use-both">BOTH</div><div class="brand">sensitive ones</div><div class="prod" style="margin-top:12px"></div><p class="hl-sm">First 500 get<br>early access.</p><p class="sub">We're launching to our waitlist first.</p><div class="cta">Join the waitlist</div></div><div class="info"><p class="t">"First 500 get early access"</p><p class="d">Urgency without fake scarcity. Reward early believers.</p><div class="tags"><span class="tag t-fmt">Static 4:5</span></div></div></div>
+
+<div class="ad show" data-cat="cta" data-use="social"><div class="mk bg-w"><div class="n">109</div><div class="fmt">Stories × 7</div><div class="use use-social">SOCIAL</div><div class="brand">sensitive ones</div><p style="font-size:48px;font-weight:800;color:var(--mg);margin:8px 0">7</p><p class="stl">DAYS</p><p class="sub" style="margin-top:8px">Day 7: "8 ingredients."<br>Day 6: "5,000mg Verisol."<br>Day 5: "Dual-cap format."<br>...<br>Day 1: "Tomorrow."</p></div><div class="info"><p class="t">Launch countdown — 7 days</p><p class="d">Daily countdown stories. Each day reveals one product fact.</p><div class="tags"><span class="tag t-fmt">Stories × 7</span><span class="tag t-src">Pre-launch week</span></div></div></div>
+
+<div class="ad show" data-cat="cta" data-use="both"><div class="mk bg-m"><div class="n">110</div><div class="fmt">Static + Reel</div><div class="use use-both">BOTH</div><p style="font-family:'Times New Roman',Georgia,serif;font-size:9px;letter-spacing:2px;font-style:italic;opacity:.5">sensitive ones</p><p style="font-family:'Times New Roman',Georgia,serif;font-size:34px;margin-top:16px">We're live.</p><div style="width:30px;height:2px;background:rgba(255,255,255,.3);margin:12px auto"></div><p style="font-size:10px;opacity:.6">Skin Support is here.</p><p style="font-size:9px;opacity:.4;margin-top:2px">forsensitiveones.com</p></div><div class="info"><p class="t">"We're live."</p><p class="d">Launch day. Clean, simple. The product speaks.</p><div class="tags"><span class="tag t-fmt">Static + Reel</span><span class="tag t-src">Launch Day</span></div></div></div>
+
+</div>
 
 <script>
-function filterCat(cat){
-document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('on'));
+function f(v){
+document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
 event.target.classList.add('on');
-document.querySelectorAll('.ad-card').forEach(c=>{
-if(cat==='all'||c.dataset.cat===cat) c.classList.add('show');
-else c.classList.remove('show');
+document.querySelectorAll('.ad').forEach(c=>{
+if(v==='all') c.classList.add('show');
+else if(v==='paid'||v==='social'||v==='both') c.dataset.use===v?c.classList.add('show'):c.classList.remove('show');
+else c.dataset.cat===v?c.classList.add('show'):c.classList.remove('show');
 });
 }
 </script>
